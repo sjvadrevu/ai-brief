@@ -205,9 +205,15 @@
       border-top: 0.5px solid var(--border);
     }
     .trend-item {
-      display: grid; grid-template-columns: 22px 1fr auto;
-      align-items: baseline; gap: 12px;
+      display: flex; align-items: center; gap: 10px;
       padding: 11px 12px; border-bottom: 0.5px solid var(--border);
+    }
+    .trend-item .trend-rank { min-width: 22px; flex-shrink: 0; }
+    .trend-item .trend-main { flex: 1; min-width: 0; }
+    .trend-item .trend-votes { flex-shrink: 0; }
+    .trend-thumb {
+      width: 32px; height: 32px; border-radius: 8px; object-fit: cover;
+      flex-shrink: 0; border: 0.5px solid var(--border);
     }
     .trend-item:nth-child(odd) { border-right: 0.5px solid var(--border); padding-left: 0; }
     .trend-item:nth-child(even) { padding-right: 0; }
@@ -430,31 +436,37 @@
       <ol class="trend-items">
         <li class="trend-item">
           <span class="trend-rank">1</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/d1459dd2-9d0e-439b-a021-6882f260f965.png?auto=format" alt="Claude Computer Use">
           <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/claude">Claude Computer Use</a><span class="trend-why">Enable Claude to use your computer to complete tasks</span></span>
           <span class="trend-votes">▲ 404</span>
         </li>
         <li class="trend-item">
           <span class="trend-rank">2</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/857e2ce7-a8f2-41d6-9815-8bbdde1d37f6.png?auto=format" alt="Cekura">
           <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/vocera">Cekura</a><span class="trend-why">Observe and analyze your voice and chat AI agents</span></span>
           <span class="trend-votes">▲ 291</span>
         </li>
         <li class="trend-item">
           <span class="trend-rank">3</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/59ad353f-50b4-4d0a-91a3-c763af3c4cc2.png?auto=format" alt="jared.so">
           <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/jared-so">jared.so</a><span class="trend-why">AI that monitors convos &amp; proactively jumps in when needed</span></span>
           <span class="trend-votes">▲ 204</span>
         </li>
         <li class="trend-item">
           <span class="trend-rank">4</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/384bff8a-f623-4c41-8125-ef9ee9500324.jpeg?auto=format" alt="Drift">
           <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/drift-ai">Drift</a><span class="trend-why">AI agent to run robot simulations faster and reliably</span></span>
           <span class="trend-votes">▲ 185</span>
         </li>
         <li class="trend-item">
           <span class="trend-rank">5</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/98ee00a0-f8cd-4b20-8fd1-b10fa5083118.svg?auto=format" alt="Google Gemini in Chrome">
           <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/googlegemini-in-chrome">Google Gemini in Chrome</a><span class="trend-why">Turn your browser into an AI workspace</span></span>
           <span class="trend-votes">▲ 144</span>
         </li>
         <li class="trend-item">
           <span class="trend-rank">6</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/e25affca-e9a1-4a73-9d3a-6a01019b7fee.png?auto=format" alt="Maestri">
           <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/maestri">Maestri</a><span class="trend-why">An infinite canvas where coding agents work in concert</span></span>
           <span class="trend-votes">▲ 127</span>
         </li>

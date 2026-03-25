@@ -205,9 +205,15 @@
       border-top: 0.5px solid var(--border);
     }
     .trend-item {
-      display: grid; grid-template-columns: 22px 1fr auto;
-      align-items: baseline; gap: 12px;
+      display: flex; align-items: center; gap: 10px;
       padding: 11px 12px; border-bottom: 0.5px solid var(--border);
+    }
+    .trend-item .trend-rank { min-width: 22px; flex-shrink: 0; }
+    .trend-item .trend-main { flex: 1; min-width: 0; }
+    .trend-item .trend-votes { flex-shrink: 0; }
+    .trend-thumb {
+      width: 32px; height: 32px; border-radius: 8px; object-fit: cover;
+      flex-shrink: 0; border: 0.5px solid var(--border);
     }
     .trend-item:nth-child(odd) { border-right: 0.5px solid var(--border); padding-left: 0; }
     .trend-item:nth-child(even) { padding-right: 0; }
@@ -449,6 +455,7 @@
       <ol class="trend-items">
         <li class="trend-item">
           <span class="trend-rank">1</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/a2d767c5-498a-410b-8ef1-b7a9831f0b56.jpeg?auto=format" alt="Agentplace AI Agents">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/agentplace">Agentplace AI Agents</a>
             <span class="trend-why">Create specialized AI agents for real tasks and workflows</span>
@@ -457,6 +464,7 @@
         </li>
         <li class="trend-item">
           <span class="trend-rank">2</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/2e7743db-7998-4af0-9b6b-9a6ca5961a6b.jpeg?auto=format" alt="Auto Mode by Claude Code">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/claude">Auto Mode by Claude Code</a>
             <span class="trend-why">Let Claude make permission decisions on your behalf</span>
@@ -465,6 +473,7 @@
         </li>
         <li class="trend-item">
           <span class="trend-rank">3</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/ac15d628-a75c-4c54-b7ee-f7f5bda99b00.png?auto=format" alt="Pendium">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/pendium-ai">Pendium</a>
             <span class="trend-why">Help AI agents recommend you more often to the right people</span>
@@ -473,6 +482,7 @@
         </li>
         <li class="trend-item">
           <span class="trend-rank">4</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/6a466fde-56ef-4591-bdf1-de8cac3cc417.png?auto=format" alt="TurboQuant">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/turboquant">TurboQuant</a>
             <span class="trend-why">New LLM compression algorithm by Google</span>
@@ -481,6 +491,7 @@
         </li>
         <li class="trend-item">
           <span class="trend-rank">5</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/245d17d1-e4c9-43d7-a717-24ae154481d1.png?auto=format" alt="LayerProof Matte">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/layerproof-social-content-generation">LayerProof Matte</a>
             <span class="trend-why">Repurpose social media posts with unique content per format</span>
@@ -489,6 +500,7 @@
         </li>
         <li class="trend-item">
           <span class="trend-rank">6</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/b1178359-12c5-45cd-8b02-b7cb396f8072.png?auto=format" alt="Omma">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/omma">Omma</a>
             <span class="trend-why">Create 3D, apps, and websites with parallel agents</span>
@@ -497,6 +509,7 @@
         </li>
         <li class="trend-item">
           <span class="trend-rank">7</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/6c34f8ae-3691-44d7-bf2b-4b5447442ccd.jpeg?auto=format" alt="Aikido × Lovable">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/aikido-2">Aikido × Lovable</a>
             <span class="trend-why">Agentic pentesting, now inside Lovable</span>
@@ -505,6 +518,7 @@
         </li>
         <li class="trend-item">
           <span class="trend-rank">8</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/ee7fa2a2-af1d-49be-898d-86a70c90a216.jpeg?auto=format" alt="Uni-1 by Luma">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/luma-ai">Uni-1 by Luma</a>
             <span class="trend-why">A unified foundation model that thinks in pixels</span>
@@ -513,6 +527,7 @@
         </li>
         <li class="trend-item">
           <span class="trend-rank">9</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/bd30371b-6980-4af0-b22e-a1294d7b174b.svg?auto=format" alt="Magine">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/magine">Magine</a>
             <span class="trend-why">Spawn vision-enabled AI agents autonomously browsing the web</span>
@@ -521,6 +536,7 @@
         </li>
         <li class="trend-item">
           <span class="trend-rank">10</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/cdea0e64-17ca-4953-b56b-df2729b92d0d.png?auto=format" alt="Keystone">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/imbue-7">Keystone</a>
             <span class="trend-why">Teach your repo how to run itself</span>
