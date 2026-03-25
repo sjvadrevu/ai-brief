@@ -17,13 +17,12 @@
     .wm-brief { font-family: 'Bebas Neue', sans-serif; font-size: 42px; color: #b8b5b0; line-height: 1; }
     .wm-sub { font-family: 'Lora', serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #4a4845; margin-top: 6px; }
 
-    /* Search */
-    .search-wrap { position: relative; }
-    .search-toggle { background: none; border: none; cursor: pointer; padding: 4px; color: #888580; }
-    .search-toggle svg { display: block; }
-    .search-input { display: none; position: absolute; right: 0; top: 28px; width: 200px; padding: 6px 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; border: 0.5px solid rgba(26,25,23,0.3); border-radius: 3px; background: #fffef9; color: #1a1917; outline: none; }
-    .search-input.visible { display: block; }
-    .search-input:focus { border-color: #b5451b; }
+    /* Search — always visible, top-right, minimal */
+    .search-wrap { display: flex; align-items: center; gap: 6px; margin-top: 10px; }
+    .search-wrap svg { flex-shrink: 0; opacity: 0.4; }
+    .search-input { width: 140px; padding: 2px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; border: none; border-bottom: 0.5px solid rgba(26,25,23,0.25); background: transparent; color: #1a1917; outline: none; }
+    .search-input::placeholder { color: #b8b5b0; }
+    .search-input:focus { border-bottom-color: #b5451b; }
 
     /* Tabs */
     .tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 0.5px solid rgba(26,25,23,0.15); }
@@ -31,11 +30,13 @@
     .tab.active { color: #b5451b; border-bottom-color: #b5451b; }
     .tab:hover:not(.active) { color: #1a1917; }
 
-    /* Tag pills */
-    .tags-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
-    .tag-pill { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; padding: 3px 8px; border: 0.5px solid rgba(26,25,23,0.2); border-radius: 2px; cursor: pointer; color: #4a4845; background: transparent; }
-    .tag-pill:hover { border-color: #b5451b; color: #b5451b; }
-    .tag-pill.active { background: #b5451b; color: #fffef9; border-color: #b5451b; }
+    /* Tags — minimal text, no boxes */
+    .tags-row { display: flex; flex-wrap: wrap; gap: 0; margin-bottom: 24px; row-gap: 6px; }
+    .tag-pill { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; padding: 2px 10px 2px 0; cursor: pointer; color: #888580; background: none; border: none; }
+    .tag-pill::after { content: '·'; margin-left: 10px; color: rgba(26,25,23,0.15); }
+    .tag-pill:last-child::after { content: ''; margin: 0; }
+    .tag-pill:hover { color: #1a1917; }
+    .tag-pill.active { color: #b5451b; text-decoration: underline; text-underline-offset: 3px; }
 
     /* Issue list */
     .month-group { margin-bottom: 28px; }
@@ -62,13 +63,11 @@
       <div class="wm-sub">Archive</div>
     </div>
     <div class="search-wrap">
-      <button type="button" class="search-toggle" id="search-toggle" aria-label="Search">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <circle cx="6.5" cy="6.5" r="4.5" stroke="#888580" stroke-width="1.2"/>
-          <path d="M10 10l3.5 3.5" stroke="#888580" stroke-width="1.2" stroke-linecap="round"/>
-        </svg>
-      </button>
-      <input class="search-input" id="search-input" type="text" placeholder="search headlines…" autocomplete="off">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+        <circle cx="6.5" cy="6.5" r="4.5" stroke="#888580" stroke-width="1.4"/>
+        <path d="M10 10l3.5 3.5" stroke="#888580" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <input class="search-input" id="search-input" type="text" placeholder="filter" autocomplete="off">
     </div>
   </header>
 
@@ -91,14 +90,7 @@
   var activeTag = null;
   var searchQ = '';
 
-  // Search toggle
-  var searchToggle = document.getElementById('search-toggle');
   var searchInput = document.getElementById('search-input');
-  searchToggle.addEventListener('click', function () {
-    searchInput.classList.toggle('visible');
-    if (searchInput.classList.contains('visible')) searchInput.focus();
-    else { searchInput.value = ''; searchQ = ''; render(); }
-  });
   searchInput.addEventListener('input', function () {
     searchQ = this.value.trim().toLowerCase();
     render();
