@@ -3,57 +3,200 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Brief — All Issues</title>
+  <title>AI Brief — Archive</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #f5f4f0; font-family: 'Lora', serif; display: flex; justify-content: center; padding: 48px 24px; }
-    .page { background: #fffef9; max-width: 640px; width: 100%; padding: 40px 48px; border: 0.5px solid rgba(26,25,23,0.22); border-radius: 4px; }
-    header { border-top: 4px solid #b5451b; padding-top: 14px; margin-bottom: 32px; display: flex; justify-content: space-between; align-items: center; }
+    .page { background: #fffef9; max-width: 680px; width: 100%; padding: 40px 48px; border: 0.5px solid rgba(26,25,23,0.22); border-radius: 4px; }
+
+    /* Header */
+    header { border-top: 4px solid #b5451b; padding-top: 14px; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: flex-start; }
     .wordmark { display: flex; align-items: baseline; gap: 8px; }
     .wm-ai { font-family: 'Bebas Neue', sans-serif; font-size: 42px; color: #b5451b; line-height: 1; }
     .wm-brief { font-family: 'Bebas Neue', sans-serif; font-size: 42px; color: #b8b5b0; line-height: 1; }
-    .wm-sub { font-family: 'Lora', serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #4a4845; }
-    h1 { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #b5451b; margin-bottom: 20px; }
+    .wm-sub { font-family: 'Lora', serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #4a4845; margin-top: 6px; }
+
+    /* Search */
+    .search-wrap { position: relative; }
+    .search-toggle { background: none; border: none; cursor: pointer; padding: 4px; color: #888580; }
+    .search-toggle svg { display: block; }
+    .search-input { display: none; position: absolute; right: 0; top: 28px; width: 200px; padding: 6px 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; border: 0.5px solid rgba(26,25,23,0.3); border-radius: 3px; background: #fffef9; color: #1a1917; outline: none; }
+    .search-input.visible { display: block; }
+    .search-input:focus { border-color: #b5451b; }
+
+    /* Tabs */
+    .tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 0.5px solid rgba(26,25,23,0.15); }
+    .tab { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #888580; padding: 8px 16px 8px 0; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -0.5px; background: none; border-top: none; border-left: none; border-right: none; }
+    .tab.active { color: #b5451b; border-bottom-color: #b5451b; }
+    .tab:hover:not(.active) { color: #1a1917; }
+
+    /* Tag pills */
+    .tags-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+    .tag-pill { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; padding: 3px 8px; border: 0.5px solid rgba(26,25,23,0.2); border-radius: 2px; cursor: pointer; color: #4a4845; background: transparent; }
+    .tag-pill:hover { border-color: #b5451b; color: #b5451b; }
+    .tag-pill.active { background: #b5451b; color: #fffef9; border-color: #b5451b; }
+
+    /* Issue list */
+    .month-group { margin-bottom: 28px; }
+    .month-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #b5451b; margin-bottom: 8px; }
     .issue-list { list-style: none; }
-    .issue-item { border-bottom: 0.5px solid rgba(26,25,23,0.12); }
-    .issue-item:first-child { border-top: 0.5px solid rgba(26,25,23,0.12); }
-    .issue-link { display: flex; align-items: baseline; gap: 20px; padding: 14px 0; text-decoration: none; color: inherit; }
+    .issue-item { border-bottom: 0.5px solid rgba(26,25,23,0.1); }
+    .issue-item:first-child { border-top: 0.5px solid rgba(26,25,23,0.1); }
+    .issue-link { display: flex; align-items: baseline; gap: 20px; padding: 13px 0; text-decoration: none; color: inherit; }
     .issue-link:hover .issue-headline { color: #b5451b; }
-    .issue-date { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #888580; white-space: nowrap; min-width: 90px; }
+    .issue-date { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #888580; white-space: nowrap; min-width: 80px; }
     .issue-headline { font-family: 'Lora', serif; font-size: 14px; font-weight: 600; color: #1a1917; line-height: 1.4; }
+
+    .empty-state { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #888580; padding: 20px 0; }
   </style>
 </head>
 <body>
 <div class="page">
   <header>
-    <div class="wordmark">
-      <span class="wm-ai">AI</span>
-      <span class="wm-brief">Brief</span>
+    <div>
+      <div class="wordmark">
+        <span class="wm-ai">AI</span>
+        <span class="wm-brief">Brief</span>
+      </div>
+      <div class="wm-sub">Archive</div>
     </div>
-    <span class="wm-sub">All Issues</span>
+    <div class="search-wrap">
+      <button type="button" class="search-toggle" id="search-toggle" aria-label="Search">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="6.5" cy="6.5" r="4.5" stroke="#888580" stroke-width="1.2"/>
+          <path d="M10 10l3.5 3.5" stroke="#888580" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <input class="search-input" id="search-input" type="text" placeholder="search headlines…" autocomplete="off">
+    </div>
   </header>
-  <h1>Archive</h1>
-  <ul class="issue-list">
-    <li class="issue-item">
-      <a class="issue-link" href="issues/2026-03-25.html">
-        <span class="issue-date">2026-03-25</span>
-        <span class="issue-headline">OpenAI Kills Sora and Readies Spud as Anthropic, Mistral, and Apple Expand Their Infrastructure Positions</span>
-      </a>
-    </li>
-    <li class="issue-item">
-      <a class="issue-link" href="issues/2026-03-24.html">
-        <span class="issue-date">2026-03-24</span>
-        <span class="issue-headline">Anthropic ships computer use, LiteLLM gets backdoored, and the enterprise agent land-grab accelerates</span>
-      </a>
-    </li>
-    <li class="issue-item">
-      <a class="issue-link" href="issues/2026-03-23.html">
-        <span class="issue-date">2026-03-23</span>
-        <span class="issue-headline">LiteLLM gets backdoored, Nvidia ships agent security infrastructure, and OpenAI winds down Sora</span>
-      </a>
-    </li>
-  </ul>
+
+  <div class="tabs">
+    <button type="button" class="tab active" data-tab="daily">Daily</button>
+    <button type="button" class="tab" data-tab="weekly">Weekly</button>
+    <button type="button" class="tab" data-tab="monthly">Monthly</button>
+  </div>
+
+  <div class="tags-row" id="tags-row"></div>
+
+  <div id="issue-container"></div>
 </div>
+
+<script>
+(function () {
+  var COMPANIES = ['OpenAI','Anthropic','Google','Meta','Microsoft','Amazon','Nvidia','Apple','Mistral','ServiceNow'];
+  var allIssues = [];
+  var activeTab = 'daily';
+  var activeTag = null;
+  var searchQ = '';
+
+  // Search toggle
+  var searchToggle = document.getElementById('search-toggle');
+  var searchInput = document.getElementById('search-input');
+  searchToggle.addEventListener('click', function () {
+    searchInput.classList.toggle('visible');
+    if (searchInput.classList.contains('visible')) searchInput.focus();
+    else { searchInput.value = ''; searchQ = ''; render(); }
+  });
+  searchInput.addEventListener('input', function () {
+    searchQ = this.value.trim().toLowerCase();
+    render();
+  });
+
+  // Tabs
+  document.querySelectorAll('.tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.tab').forEach(function (t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      activeTab = tab.dataset.tab;
+      activeTag = null;
+      buildTagPills();
+      render();
+    });
+  });
+
+  function buildTagPills() {
+    var filtered = allIssues.filter(function (x) { return x.type === activeTab; });
+    var tagCounts = {};
+    COMPANIES.forEach(function (c) { tagCounts[c] = 0; });
+    filtered.forEach(function (issue) {
+      (issue.tags || []).forEach(function (t) { if (tagCounts[t] !== undefined) tagCounts[t]++; });
+    });
+    var row = document.getElementById('tags-row');
+    row.innerHTML = '';
+    COMPANIES.forEach(function (c) {
+      if (tagCounts[c] === 0) return;
+      var pill = document.createElement('button');
+      pill.type = 'button';
+      pill.className = 'tag-pill' + (activeTag === c ? ' active' : '');
+      pill.textContent = c;
+      pill.addEventListener('click', function () {
+        activeTag = (activeTag === c) ? null : c;
+        buildTagPills();
+        render();
+      });
+      row.appendChild(pill);
+    });
+  }
+
+  function monthLabel(dateStr) {
+    var parts = dateStr.split('-');
+    var d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, 1);
+    return d.toLocaleString('en-US', { month: 'long', year: 'numeric' }).toUpperCase();
+  }
+
+  function weekLabel(dateStr) {
+    return 'Week of ' + dateStr;
+  }
+
+  function render() {
+    var filtered = allIssues.filter(function (x) {
+      if (x.type !== activeTab) return false;
+      if (activeTag && !(x.tags || []).includes(activeTag)) return false;
+      if (searchQ && x.headline.toLowerCase().indexOf(searchQ) === -1) return false;
+      return true;
+    });
+
+    var container = document.getElementById('issue-container');
+    if (filtered.length === 0) {
+      container.innerHTML = '<p class="empty-state">No issues found.</p>';
+      return;
+    }
+
+    // Group by month
+    var groups = {};
+    var groupOrder = [];
+    filtered.forEach(function (issue) {
+      var key = activeTab === 'daily' ? issue.date.slice(0, 7) : (activeTab === 'weekly' ? issue.date.slice(0, 7) : issue.date.slice(0, 7));
+      if (!groups[key]) { groups[key] = []; groupOrder.push(key); }
+      groups[key].push(issue);
+    });
+
+    var html = '';
+    groupOrder.forEach(function (key) {
+      var label = activeTab === 'monthly' ? key : monthLabel(groups[key][0].date);
+      html += '<div class="month-group"><div class="month-label">' + label + '</div><ul class="issue-list">';
+      groups[key].forEach(function (issue) {
+        var dateDisplay = activeTab === 'daily' ? issue.date : (activeTab === 'weekly' ? weekLabel(issue.date) : issue.date.slice(0, 7));
+        html += '<li class="issue-item"><a class="issue-link" href="' + issue.url + '">' +
+          '<span class="issue-date">' + dateDisplay + '</span>' +
+          '<span class="issue-headline">' + issue.headline + '</span>' +
+          '</a></li>';
+      });
+      html += '</ul></div>';
+    });
+    container.innerHTML = html;
+  }
+
+  fetch('index.json').then(function (r) { return r.json(); }).then(function (data) {
+    allIssues = data.issues || [];
+    buildTagPills();
+    render();
+  }).catch(function () {
+    document.getElementById('issue-container').innerHTML = '<p class="empty-state">Could not load issues.</p>';
+  });
+})();
+</script>
 </body>
 </html>

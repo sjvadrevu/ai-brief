@@ -1,5 +1,25 @@
-[
-  { "date": "2026-03-25", "headline": "OpenAI Kills Sora and Readies Spud as Anthropic, Mistral, and Apple Expand Their Infrastructure Positions" },
-  { "date": "2026-03-24", "headline": "Anthropic ships computer use, LiteLLM gets backdoored, and the enterprise agent land-grab accelerates" },
-  { "date": "2026-03-23", "headline": "LiteLLM gets backdoored, Nvidia ships agent security infrastructure, and OpenAI winds down Sora" }
-]
+{
+  "issues": [
+    {
+      "type": "daily",
+      "date": "2026-03-25",
+      "url": "issues/daily/2026/03/2026-03-25.html",
+      "headline": "OpenAI Kills Sora and Readies Spud as Anthropic, Mistral, and Apple Expand Their Infrastructure Positions",
+      "tags": ["OpenAI", "Anthropic", "Mistral", "Apple", "Google", "Meta", "Amazon", "Nvidia"]
+    },
+    {
+      "type": "daily",
+      "date": "2026-03-24",
+      "url": "issues/daily/2026/03/2026-03-24.html",
+      "headline": "Anthropic ships computer use, LiteLLM gets backdoored, and the enterprise agent land-grab accelerates",
+      "tags": ["OpenAI", "Anthropic", "Nvidia", "Google", "Amazon", "ServiceNow"]
+    },
+    {
+      "type": "daily",
+      "date": "2026-03-23",
+      "url": "issues/daily/2026/03/2026-03-23.html",
+      "headline": "LiteLLM gets backdoored, Nvidia ships agent security infrastructure, and OpenAI winds down Sora",
+      "tags": ["OpenAI", "Nvidia", "Apple", "Google", "Amazon", "ServiceNow"]
+    }
+  ]
+}
