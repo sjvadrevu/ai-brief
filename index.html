@@ -3,83 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Brief — Archive</title>
+  <title>AI Brief</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #f5f4f0; font-family: 'Lora', serif; display: flex; justify-content: center; padding: 48px 24px; }
-    .page { background: #fffef9; max-width: 680px; width: 100%; padding: 40px 48px; border: 0.5px solid rgba(26,25,23,0.22); border-radius: 4px; }
+    .page { background: #fffef9; max-width: 860px; width: 100%; border: 0.5px solid rgba(26,25,23,0.22); border-radius: 4px; overflow: hidden; }
 
     /* Header */
-    header { border-top: 4px solid #b5451b; padding-top: 14px; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: flex-start; }
+    header { border-top: 4px solid #b5451b; padding: 16px 40px 16px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 0.5px solid rgba(26,25,23,0.1); }
     .wordmark { display: flex; align-items: baseline; gap: 8px; }
-    .wm-ai { font-family: 'Bebas Neue', sans-serif; font-size: 42px; color: #b5451b; line-height: 1; }
-    .wm-brief { font-family: 'Bebas Neue', sans-serif; font-size: 42px; color: #b8b5b0; line-height: 1; }
-    .wm-sub { font-family: 'Lora', serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #4a4845; margin-top: 6px; }
+    .wm-ai { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: #b5451b; line-height: 1; }
+    .wm-brief { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: #b8b5b0; line-height: 1; }
 
-    /* Search — always visible, top-right, minimal */
-    .search-wrap { display: flex; align-items: center; gap: 6px; margin-top: 10px; }
-    .search-wrap svg { flex-shrink: 0; opacity: 0.4; }
-    .search-input { width: 140px; padding: 2px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; border: none; border-bottom: 0.5px solid rgba(26,25,23,0.25); background: transparent; color: #1a1917; outline: none; }
-    .search-input::placeholder { color: #b8b5b0; }
+    /* Search */
+    .search-wrap { display: flex; align-items: center; gap: 6px; }
+    .search-wrap svg { flex-shrink: 0; opacity: 0.35; }
+    .search-input { width: 130px; padding: 2px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; border: none; border-bottom: 0.5px solid rgba(26,25,23,0.2); background: transparent; color: #1a1917; outline: none; }
     .search-input:focus { border-bottom-color: #b5451b; }
 
     /* Tabs */
-    .tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 0.5px solid rgba(26,25,23,0.15); }
-    .tab { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #888580; padding: 8px 16px 8px 0; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -0.5px; background: none; border-top: none; border-left: none; border-right: none; }
+    .tabs-bar { padding: 0 40px; border-bottom: 0.5px solid rgba(26,25,23,0.12); }
+    .tabs { display: flex; gap: 0; }
+    .tab { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #888580; padding: 10px 20px 10px 0; cursor: pointer; border: none; border-bottom: 2px solid transparent; margin-bottom: -0.5px; background: none; }
     .tab.active { color: #b5451b; border-bottom-color: #b5451b; }
     .tab:hover:not(.active) { color: #1a1917; }
 
-    /* Tags — minimal text, no boxes */
-    .tags-row { display: flex; flex-wrap: wrap; gap: 0; margin-bottom: 24px; row-gap: 6px; }
-    .tag-pill { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; padding: 2px 10px 2px 0; cursor: pointer; color: #888580; background: none; border: none; }
-    .tag-pill::after { content: '·'; margin-left: 10px; color: rgba(26,25,23,0.15); }
-    .tag-pill:last-child::after { content: ''; margin: 0; }
-    .tag-pill:hover { color: #1a1917; }
-    .tag-pill.active { color: #b5451b; text-decoration: underline; text-underline-offset: 3px; }
+    /* Body — two column */
+    .body { display: flex; }
 
-    /* Issue list */
-    .month-group { margin-bottom: 28px; }
-    .month-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #b5451b; margin-bottom: 8px; }
+    /* Issue list — left */
+    .main { flex: 1; padding: 32px 40px; min-width: 0; }
+    .month-group { margin-bottom: 32px; }
+    .month-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #b5451b; margin-bottom: 10px; }
     .issue-list { list-style: none; }
-    .issue-item { border-bottom: 0.5px solid rgba(26,25,23,0.1); }
-    .issue-item:first-child { border-top: 0.5px solid rgba(26,25,23,0.1); }
-    .issue-link { display: flex; align-items: baseline; gap: 20px; padding: 13px 0; text-decoration: none; color: inherit; }
+    .issue-item { border-bottom: 0.5px solid rgba(26,25,23,0.08); }
+    .issue-item:first-child { border-top: 0.5px solid rgba(26,25,23,0.08); }
+    .issue-link { display: flex; align-items: baseline; gap: 20px; padding: 12px 0; text-decoration: none; color: inherit; }
     .issue-link:hover .issue-headline { color: #b5451b; }
-    .issue-date { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #888580; white-space: nowrap; min-width: 80px; }
+    .issue-date { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #aaa8a4; white-space: nowrap; min-width: 76px; flex-shrink: 0; }
     .issue-headline { font-family: 'Lora', serif; font-size: 14px; font-weight: 600; color: #1a1917; line-height: 1.4; }
+    .empty-state { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #888580; padding: 12px 0; }
 
-    .empty-state { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #888580; padding: 20px 0; }
+    /* Sidebar — right */
+    .sidebar { width: 160px; flex-shrink: 0; border-left: 0.5px solid rgba(26,25,23,0.1); padding: 32px 24px; }
+    .sidebar-head { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #aaa8a4; margin-bottom: 14px; }
+    .filter-list { list-style: none; }
+    .filter-item { margin-bottom: 2px; }
+    .filter-btn { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.02em; color: #4a4845; background: none; border: none; cursor: pointer; padding: 4px 0; display: block; width: 100%; text-align: left; }
+    .filter-btn:hover { color: #1a1917; }
+    .filter-btn.active { color: #b5451b; font-weight: 500; }
+    .filter-btn.active::before { content: '— '; }
   </style>
 </head>
 <body>
 <div class="page">
   <header>
-    <div>
-      <div class="wordmark">
-        <span class="wm-ai">AI</span>
-        <span class="wm-brief">Brief</span>
-      </div>
-      <div class="wm-sub">Archive</div>
+    <div class="wordmark">
+      <span class="wm-ai">AI</span>
+      <span class="wm-brief">Brief</span>
     </div>
     <div class="search-wrap">
       <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-        <circle cx="6.5" cy="6.5" r="4.5" stroke="#888580" stroke-width="1.4"/>
-        <path d="M10 10l3.5 3.5" stroke="#888580" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="6.5" cy="6.5" r="4.5" stroke="#1a1917" stroke-width="1.4"/>
+        <path d="M10 10l3.5 3.5" stroke="#1a1917" stroke-width="1.4" stroke-linecap="round"/>
       </svg>
-      <input class="search-input" id="search-input" type="text" placeholder="filter" autocomplete="off">
+      <input class="search-input" id="search-input" type="text" aria-label="Search" autocomplete="off">
     </div>
   </header>
 
-  <div class="tabs">
-    <button type="button" class="tab active" data-tab="daily">Daily</button>
-    <button type="button" class="tab" data-tab="weekly">Weekly</button>
-    <button type="button" class="tab" data-tab="monthly">Monthly</button>
+  <div class="tabs-bar">
+    <div class="tabs">
+      <button type="button" class="tab active" data-tab="daily">Daily</button>
+      <button type="button" class="tab" data-tab="weekly">Weekly</button>
+      <button type="button" class="tab" data-tab="monthly">Monthly</button>
+    </div>
   </div>
 
-  <div class="tags-row" id="tags-row"></div>
-
-  <div id="issue-container"></div>
+  <div class="body">
+    <div class="main" id="issue-container"></div>
+    <aside class="sidebar">
+      <ul class="filter-list" id="filter-list"></ul>
+    </aside>
+  </div>
 </div>
 
 <script>
@@ -90,56 +96,52 @@
   var activeTag = null;
   var searchQ = '';
 
-  var searchInput = document.getElementById('search-input');
-  searchInput.addEventListener('input', function () {
+  document.getElementById('search-input').addEventListener('input', function () {
     searchQ = this.value.trim().toLowerCase();
     render();
   });
 
-  // Tabs
   document.querySelectorAll('.tab').forEach(function (tab) {
     tab.addEventListener('click', function () {
       document.querySelectorAll('.tab').forEach(function (t) { t.classList.remove('active'); });
       tab.classList.add('active');
       activeTab = tab.dataset.tab;
       activeTag = null;
-      buildTagPills();
+      buildFilters();
       render();
     });
   });
 
-  function buildTagPills() {
+  function buildFilters() {
     var filtered = allIssues.filter(function (x) { return x.type === activeTab; });
     var tagCounts = {};
     COMPANIES.forEach(function (c) { tagCounts[c] = 0; });
     filtered.forEach(function (issue) {
       (issue.tags || []).forEach(function (t) { if (tagCounts[t] !== undefined) tagCounts[t]++; });
     });
-    var row = document.getElementById('tags-row');
-    row.innerHTML = '';
+    var list = document.getElementById('filter-list');
+    list.innerHTML = '';
     COMPANIES.forEach(function (c) {
       if (tagCounts[c] === 0) return;
-      var pill = document.createElement('button');
-      pill.type = 'button';
-      pill.className = 'tag-pill' + (activeTag === c ? ' active' : '');
-      pill.textContent = c;
-      pill.addEventListener('click', function () {
+      var li = document.createElement('li');
+      li.className = 'filter-item';
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'filter-btn' + (activeTag === c ? ' active' : '');
+      btn.textContent = c;
+      btn.addEventListener('click', function () {
         activeTag = (activeTag === c) ? null : c;
-        buildTagPills();
+        buildFilters();
         render();
       });
-      row.appendChild(pill);
+      li.appendChild(btn);
+      list.appendChild(li);
     });
   }
 
   function monthLabel(dateStr) {
-    var parts = dateStr.split('-');
-    var d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, 1);
-    return d.toLocaleString('en-US', { month: 'long', year: 'numeric' }).toUpperCase();
-  }
-
-  function weekLabel(dateStr) {
-    return 'Week of ' + dateStr;
+    var p = dateStr.split('-');
+    return new Date(+p[0], +p[1] - 1, 1).toLocaleString('en-US', { month: 'long', year: 'numeric' }).toUpperCase();
   }
 
   function render() {
@@ -156,23 +158,20 @@
       return;
     }
 
-    // Group by month
-    var groups = {};
-    var groupOrder = [];
+    var groups = {}, groupOrder = [];
     filtered.forEach(function (issue) {
-      var key = activeTab === 'daily' ? issue.date.slice(0, 7) : (activeTab === 'weekly' ? issue.date.slice(0, 7) : issue.date.slice(0, 7));
+      var key = issue.date.slice(0, 7);
       if (!groups[key]) { groups[key] = []; groupOrder.push(key); }
       groups[key].push(issue);
     });
 
     var html = '';
     groupOrder.forEach(function (key) {
-      var label = activeTab === 'monthly' ? key : monthLabel(groups[key][0].date);
-      html += '<div class="month-group"><div class="month-label">' + label + '</div><ul class="issue-list">';
+      html += '<div class="month-group"><div class="month-label">' + monthLabel(groups[key][0].date) + '</div><ul class="issue-list">';
       groups[key].forEach(function (issue) {
-        var dateDisplay = activeTab === 'daily' ? issue.date : (activeTab === 'weekly' ? weekLabel(issue.date) : issue.date.slice(0, 7));
+        var d = activeTab === 'weekly' ? 'Week of ' + issue.date : activeTab === 'monthly' ? issue.date.slice(0, 7) : issue.date;
         html += '<li class="issue-item"><a class="issue-link" href="' + issue.url + '">' +
-          '<span class="issue-date">' + dateDisplay + '</span>' +
+          '<span class="issue-date">' + d + '</span>' +
           '<span class="issue-headline">' + issue.headline + '</span>' +
           '</a></li>';
       });
@@ -183,7 +182,7 @@
 
   fetch('index.json').then(function (r) { return r.json(); }).then(function (data) {
     allIssues = data.issues || [];
-    buildTagPills();
+    buildFilters();
     render();
   }).catch(function () {
     document.getElementById('issue-container').innerHTML = '<p class="empty-state">Could not load issues.</p>';
