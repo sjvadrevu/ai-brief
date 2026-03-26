@@ -343,9 +343,11 @@
   <main>
 
     <section class="lead-section" aria-labelledby="lead-heading">
-      <h2 class="lead-headline" id="lead-heading">ARC-AGI-3 exposes frontier AI adaptation gap as OpenAI rounds $120B and Google ships 6x memory compression</h2>
-      <p class="lead-deck">Every major frontier model scored below 1% on ARC-AGI-3's new interactive reasoning benchmark while OpenAI closed an additional $10B at a $730B valuation with Microsoft, Amazon, Nvidia, and SoftBank among backers; Google Research published TurboQuant delivering 6x KV-cache compression and 8x attention speedup on H100s; the Pentagon locked Palantir's Maven AI into a $13.4B program of record; and OpenAI launched a safety bug bounty targeting agentic prompt injection and data exfiltration.</p>
+      <h2 class="lead-headline" id="lead-heading">Every frontier model scores under 1% on ARC-AGI-3 as OpenAI crosses $120B and Google ships 6x memory compression</h2>
+      <p class="lead-deck">The <a href="https://arcprize.org/arc-agi/3">ARC-AGI-3 benchmark</a> placed every frontier model — from Google Gemini Pro to OpenAI GPT-5.4 High to Anthropic Claude Opus — below 1% of human performance on interactive reasoning, while OpenAI's funding round expanded to $120 billion at a $730 billion valuation, Google Research published <a href="https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/">TurboQuant</a> delivering 6x KV-cache compression with zero accuracy loss, and the Pentagon formalized Palantir's Maven AI as a core military system with a $13.4 billion FY2026 budget.</p>
     </section>
+
+
 
     <div class="content-grid">
       <section aria-labelledby="matters-heading">
@@ -354,69 +356,69 @@
 
           <div class="story-card story-card--wide">
             <div class="story-card-body">
-              <h4 class="story-head">ARC-AGI-3 Benchmark</h4>
-              <p class="story-lead"><a href="https://arcprize.org/arc-agi/3">ARC-AGI-3</a> placed frontier models into turn-based game environments with no stated goals, and every major LLM scored below 1% of the human baseline.</p>
+              <h4 class="story-head">ARC-AGI-3 BENCHMARK</h4>
+              <p class="story-lead"><a href="https://arcprize.org/arc-agi/3">ARC-AGI-3</a> placed all frontier LLMs below 1% of human performance on interactive, goal-free reasoning environments — the benchmark's first major format change since 2019.</p>
               <ul class="story-facts">
                 <li>All frontier LLMs scored below 1%; best AI agent (StochasticGoose) reached 12.58% vs 100% human baseline.</li>
                 <li>Google Gemini Pro: 0.37% · OpenAI GPT-5.4 High: 0.26% · Anthropic Claude Opus: 0.25%.</li>
-                <li>First format change since 2019 — static grid puzzles replaced by interactive turn-based environments requiring rule discovery through action.</li>
-                <li>$2M+ prize pool across three tracks; open-source requirement for all winning solutions.</li>
-                <li>Benchmark distributed as MIT-licensed, pip-installable Python toolkit; exploration and adaptation remain the measurable gap.</li>
+                <li>Format change from static grid puzzles to turn-based game environments with no stated goals — success requires learning rules through interaction.</li>
+                <li>$2M+ prize pool across three tracks; winning solutions must be open-sourced.</li>
+                <li>Benchmark ships as MIT-licensed, pip-installable Python toolkit; benchmark is unsaturated.</li>
               </ul>
             </div>
           </div>
 
           <div class="story-card">
             <div class="story-card-body">
-              <h4 class="story-head">OpenAI $120B Round</h4>
-              <p class="story-lead"><a href="https://www.cnbc.com/2026/03/24/openai-secures-an-extra-10-billion-in-record-funding-round-cfo-friar-says.html">OpenAI's CFO confirmed</a> an additional $10B close, pushing the total round past $120B at a $730B pre-money valuation.</p>
+              <h4 class="story-head">OPENAI FUNDING ROUND</h4>
+              <p class="story-lead"><a href="https://www.cnbc.com/2026/03/24/openai-secures-an-extra-10-billion-in-record-funding-round-cfo-friar-says.html">OpenAI's CFO confirmed</a> an additional $10 billion close, pushing the total round past $120 billion at a $730 billion pre-money valuation.</p>
               <ul class="story-facts">
-                <li>$120B+ total round at $730B pre-money valuation — surpassed the initial $100B target.</li>
-                <li><a href="https://www.bloomberg.com/news/articles/2026-03-24/openai-set-to-raise-about-10-billion-from-mgx-coatue-thrive">New $10B tranche</a> led by MGX, Coatue, and Thrive; Microsoft, Andreessen Horowitz, D.E. Shaw, and T. Rowe Price participating.</li>
-                <li>Original tranche: $50B from Amazon · $30B from Nvidia · $30B from SoftBank.</li>
+                <li>$120B+ total round at $730B pre-money valuation — surpassed initial $100B target.</li>
+                <li>New $10B tranche led by MGX, Coatue, and Thrive; <a href="https://www.bloomberg.com/news/articles/2026-03-24/openai-set-to-raise-about-10-billion-from-mgx-coatue-thrive">Bloomberg reported</a> Microsoft, Andreessen Horowitz, D.E. Shaw, and T. Rowe Price also participated.</li>
+                <li>Original tranche: $50B Amazon · $30B Nvidia · $30B SoftBank.</li>
                 <li>Proceeds target compute infrastructure and product expansion.</li>
-                <li>Microsoft's participation continues alongside its role as OpenAI's primary cloud and Copilot infrastructure partner.</li>
+                <li>Microsoft's participation continues alongside its primary cloud and Copilot infrastructure partnership with OpenAI.</li>
               </ul>
             </div>
           </div>
 
           <div class="story-card">
             <div class="story-card-body">
-              <h4 class="story-head">Google TurboQuant</h4>
-              <p class="story-lead"><a href="https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/">Google Research published TurboQuant</a>, a two-stage algorithm compressing transformer KV-caches to 3 bits per value — a 6x memory reduction — with no measurable accuracy degradation.</p>
+              <h4 class="story-head">GOOGLE TURBOQUANT</h4>
+              <p class="story-lead"><a href="https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/">Google Research published TurboQuant</a>, a two-stage algorithm delivering 6x KV-cache memory compression at 3-bit quantization with no measurable accuracy degradation and no retraining required.</p>
               <ul class="story-facts">
-                <li>6x KV-cache memory reduction at 3-bit quantization — zero accuracy loss across QA, code generation, and summarization benchmarks.</li>
-                <li>8x attention speedup on Nvidia H100s vs 32-bit baseline using 4-bit TurboQuant.</li>
+                <li>6x KV-cache memory reduction at 3-bit quantization — zero accuracy loss across question answering, code generation, and summarization benchmarks.</li>
+                <li>8x speedup in attention logit computation on Nvidia H100s vs 32-bit baseline using 4-bit TurboQuant.</li>
+                <li>Algorithm combines PolarQuant (Cartesian-to-polar conversion) and QJL (Johnson-Lindenstrauss Transform for key compression).</li>
                 <li>No model retraining or fine-tuning required — drop-in for existing deployments.</li>
-                <li>Algorithm combines PolarQuant (Cartesian-to-polar coordinate conversion) and QJL (Johnson-Lindenstrauss Transform for key compression).</li>
-                <li>Code and papers freely available including for enterprise use; no licensing restrictions. <a href="https://techcrunch.com/2026/03/25/google-turboquant-ai-memory-compression-silicon-valley-pied-piper/">TechCrunch coverage</a>.</li>
+                <li>Code and papers freely available including for enterprise use with no licensing restrictions. <a href="https://techcrunch.com/2026/03/25/google-turboquant-ai-memory-compression-silicon-valley-pied-piper/">TechCrunch coverage.</a></li>
               </ul>
             </div>
           </div>
 
           <div class="story-card">
             <div class="story-card-body">
-              <h4 class="story-head">Pentagon Maven Program</h4>
-              <p class="story-lead"><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/pentagon-formalizes-palantirs-maven-ai-as-a-core-military-system-with-multi-year-funding-platforms-investment-grows-to-usd13-billion-from-usd480-million-in-2024">The Pentagon designated Palantir's Maven Smart System as a program of record</a>, locking in multi-year funding and institutionalizing the AI weapons-targeting platform.</p>
+              <h4 class="story-head">PENTAGON MAVEN AI</h4>
+              <p class="story-lead">The <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/pentagon-formalizes-palantirs-maven-ai-as-a-core-military-system-with-multi-year-funding-platforms-investment-grows-to-usd13-billion-from-usd480-million-in-2024">Pentagon designated Palantir's Maven Smart System as an official program of record</a>, locking in multi-year funding with a $13.4 billion FY2026 AI budget line — up from $480 million in May 2024.</p>
               <ul class="story-facts">
-                <li>$480M (May 2024) to $13.4B FY2026 — 28x budget growth in under two years.</li>
+                <li>$480M (2024) → $13.4B FY2026 — 28x budget growth in under two years.</li>
                 <li>20,000+ active military users; 1,000 targets processed in 24 hours during Operation Epic Fury.</li>
-                <li>$13.4B covers unmanned systems ($9.4B), autonomy ($1.6B), maritime ($1.7B), and software ($1.2B).</li>
+                <li>$13.4B covers unmanned systems ($9.4B), autonomy ($1.6B), maritime ($1.7B), software ($1.2B).</li>
                 <li>Oversight transfers from the National Geospatial Intelligence Agency to the Pentagon's Chief Digital AI Office.</li>
-                <li>Deputy Secretary Steve Feinberg directed the designation to complete before September 2026; program of record status locks in funding continuity across budget cycles.</li>
+                <li>Program of record status locks in funding continuity across budget cycles; designation directed by Deputy Secretary Steve Feinberg to complete before September 2026.</li>
               </ul>
             </div>
           </div>
 
           <div class="story-card">
             <div class="story-card-body">
-              <h4 class="story-head">OpenAI Safety Bug Bounty</h4>
-              <p class="story-lead"><a href="https://openai.com/index/safety-bug-bounty/">OpenAI launched a public Safety Bug Bounty</a> targeting security vulnerabilities in agentic products including Browser and ChatGPT Agent.</p>
+              <h4 class="story-head">OPENAI SAFETY BUG BOUNTY</h4>
+              <p class="story-lead"><a href="https://openai.com/index/safety-bug-bounty/">OpenAI launched a public Safety Bug Bounty</a> targeting agentic product vulnerabilities including prompt injection, data exfiltration, and abuse patterns in Browser and ChatGPT Agent.</p>
               <ul class="story-facts">
-                <li>Scope covers third-party prompt injection, data exfiltration, and abuse patterns in autonomous AI systems.</li>
-                <li>Reproducibility threshold: 50%+ success rate required to qualify; content policy bypasses without demonstrable harm excluded.</li>
-                <li>$25,000 for first universal jailbreak clearing all ten bio/chem questions in the bio bounty track.</li>
-                <li><a href="https://openai.com/index/our-approach-to-the-model-spec">Model Spec published</a> the same day as a public standard for AI system behavior balancing safety, user autonomy, and accountability.</li>
+                <li>Scope covers third-party prompt injection, data exfiltration, and agentic abuse in Browser and ChatGPT Agent.</li>
+                <li>Reproducibility threshold: 50%+ success rate required to qualify; content policy bypasses without harm evidence are excluded.</li>
+                <li>$25,000 for first universal jailbreak clearing all ten bio/chem questions in bio bounty track.</li>
+                <li><a href="https://openai.com/index/our-approach-to-the-model-spec">Model Spec published</a> the same day as a public standard for AI system behavior across model generations.</li>
                 <li>Private campaigns run periodically targeting specific harm types.</li>
               </ul>
             </div>
@@ -431,26 +433,26 @@
           <ul class="research-list">
             <li class="research-item">
               <span class="research-label"><a href="https://huggingface.co/papers/2603.22918">EVA: Efficient Reinforcement Learning for End-to-End Video Agent</a></span>
-              <p class="research-desc">RL framework for video understanding agents using Kahneman-Tversky Optimization and Generalized Reward Policy Optimization with iterative planning. Relevant to building capable video-processing agents.</p>
+              <p class="research-desc">RL framework for video understanding agents using Kahneman-Tversky Optimization and Generalized Reward Policy Optimization. Iterative planning with adaptive reasoning across multiple video benchmarks.</p>
             </li>
             <li class="research-item">
               <span class="research-label"><a href="https://huggingface.co/papers/2603.22341">T-MAP: Red-Teaming LLM Agents with Trajectory-aware Evolutionary Search</a></span>
-              <p class="research-desc">Evolutionary search for adversarial prompts exploiting execution trajectory vulnerabilities in tool-using agents. Directly applicable to agentic product security evaluation.</p>
+              <p class="research-desc">Evolutionary search for adversarial prompts that bypass safety in tool-using agents via execution trajectory vulnerabilities. Directly applicable to agentic product security evaluation.</p>
             </li>
             <li class="research-item">
               <span class="research-label"><a href="https://huggingface.co/papers/2603.24533">UI-Voyager: A Self-Evolving GUI Agent Learning via Failed Experience</a></span>
-              <p class="research-desc">Mobile GUI agent that self-improves from failed automation attempts using rejection fine-tuning and dense step-level supervision. Key for evaluating autonomous desktop/mobile automation.</p>
+              <p class="research-desc">Mobile GUI agent using rejection fine-tuning and group relative self-distillation. Self-improves from failed automation attempts using dense step-level supervision.</p>
             </li>
             <li class="research-item">
               <span class="research-label"><a href="https://huggingface.co/papers/2603.24472">Why Does Self-Distillation (Sometimes) Degrade LLM Reasoning?</a></span>
-              <p class="research-desc">Self-distillation suppresses uncertainty expression and degrades out-of-distribution math reasoning; epistemic verbalization identified as critical to preserving reasoning during model compression.</p>
+              <p class="research-desc">Self-distillation suppresses uncertainty expression and degrades math reasoning on out-of-distribution tasks. Epistemic verbalization identified as critical to preserving reasoning during model compression.</p>
             </li>
           </ul>
         </section>
         <section class="sidebar-section">
           <h3 class="sidebar-head">Community signal</h3>
           <ul class="signal-list">
-            <li class="signal-item"><a href="https://redd.it/1s3j3ef">r/MachineLearning on LeCun's $1B investment</a> — community debating autoregressive LLM scaling limits and formal reasoning gaps in the context of LeCun's thesis.</li>
+            <li class="signal-item"><a href="https://redd.it/1s3j3ef">r/MachineLearning thread on LeCun's $1B investment context</a> — discussion centers on autoregressive LLM scaling limits and formal reasoning gaps.</li>
           </ul>
         </section>
       </aside>
@@ -461,51 +463,57 @@
       <ol class="trend-items">
         <li class="trend-item">
           <span class="trend-rank">1</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/b452bcf1-1bad-41dd-9dcf-92ed7cf31548.png?auto=format" alt="Littlebird">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/littlebird">Littlebird</a>
-            <span class="trend-why">Full context AI that recalls details from your screen</span>
+            <span class="trend-why">The AI assistant that already knows your work</span>
           </span>
-          <span class="trend-votes">▲ 259</span>
+          <span class="trend-votes">▲ 360</span>
         </li>
         <li class="trend-item">
           <span class="trend-rank">2</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/ce7d6647-163a-404c-8a2c-bc3228155f29.png?auto=format" alt="Claude Mobile: Work Tools">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/claude-mobile-work-tools">Claude Mobile: Work Tools</a>
             <span class="trend-why">Access Claude work tools on mobile</span>
           </span>
-          <span class="trend-votes">▲ 219</span>
+          <span class="trend-votes">▲ 298</span>
         </li>
         <li class="trend-item">
           <span class="trend-rank">3</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/120d4c8b-c933-4cd0-8292-cf967366c64a.jpeg?auto=format" alt="PIO">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/pio">PIO</a>
             <span class="trend-why">Agentic payroll automation across tools</span>
           </span>
-          <span class="trend-votes">▲ 168</span>
+          <span class="trend-votes">▲ 227</span>
         </li>
         <li class="trend-item">
           <span class="trend-rank">4</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/fb6d4da9-e361-445e-ba43-2ba8c743b9b4.png?auto=format" alt="Venn.ai">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/venn-ai-2">Venn.ai</a>
             <span class="trend-why">Delegate real work to AI agents with safety guardrails</span>
           </span>
-          <span class="trend-votes">▲ 155</span>
+          <span class="trend-votes">▲ 198</span>
         </li>
         <li class="trend-item">
           <span class="trend-rank">5</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/34818bee-b6b6-49e5-882a-54617e0ef40c.png?auto=format" alt="Jentic Mini">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/jentic-mini">Jentic Mini</a>
             <span class="trend-why">Safe API access for AI agents across 10,000+ APIs</span>
           </span>
-          <span class="trend-votes">▲ 146</span>
+          <span class="trend-votes">▲ 193</span>
         </li>
         <li class="trend-item">
           <span class="trend-rank">6</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/31e5a04f-5702-422e-bbeb-ddd3bea164f4.png?auto=format" alt="Lyria 3 Pro by Google DeepMind">
           <span class="trend-main">
             <a class="trend-name" href="https://www.producthunt.com/products/google-3">Lyria 3 Pro by Google DeepMind</a>
             <span class="trend-why">Create longer AI music tracks with structure and control</span>
           </span>
-          <span class="trend-votes">▲ 143</span>
+          <span class="trend-votes">▲ 179</span>
         </li>
       </ol>
     </nav>
@@ -513,13 +521,10 @@
     <section class="also-section">
       <h2 class="also-heading">Also in AI today</h2>
       <ul class="also-list">
-        <li class="also-item"><a href="https://deepmind.google/blog/protecting-people-from-harmful-manipulation/"><strong>Google DeepMind</strong></a> — published research on AI manipulation risks in finance and health domains with new detection measures.</li>
-        <li class="also-item"><a href="https://aws.amazon.com/blogs/machine-learning/deploy-voice-agents-with-pipecat-and-amazon-bedrock-agentcore-runtime-part-1/"><strong>AWS Bedrock AgentCore Runtime</strong></a> — deployment guide for Pipecat voice agents adds WebSockets, WebRTC, and telephony.</li>
-        <li class="also-item"><a href="https://aws.amazon.com/blogs/machine-learning/unlocking-video-insights-at-scale-with-amazon-bedrock-multimodal-models/"><strong>AWS Bedrock multimodal models</strong></a> — now support three video insight architectures for scalable video understanding at different cost-performance tradeoffs.</li>
+        <li class="also-item"><a href="https://deepmind.google/blog/protecting-people-from-harmful-manipulation/"><strong>Google DeepMind</strong></a> — published research on AI manipulation risks in finance and health domains, with new detection measures.</li>
+        <li class="also-item"><a href="https://aws.amazon.com/blogs/machine-learning/deploy-voice-agents-with-pipecat-and-amazon-bedrock-agentcore-runtime-part-1/"><strong>AWS Bedrock AgentCore Runtime</strong></a> — deployment guide for Pipecat voice agents adds WebSockets, WebRTC, and telephony support.</li>
+        <li class="also-item"><a href="https://aws.amazon.com/blogs/machine-learning/unlocking-video-insights-at-scale-with-amazon-bedrock-multimodal-models/"><strong>AWS Bedrock multimodal</strong></a> — models now support three video insight architectures for scalable video understanding at different cost-performance tradeoffs.</li>
         <li class="also-item"><a href="https://aws.amazon.com/blogs/machine-learning/reinforcement-fine-tuning-on-amazon-bedrock-with-openai-compatible-apis-a-technical-walkthrough/"><strong>AWS Bedrock reinforcement fine-tuning</strong></a> — now available via OpenAI-compatible APIs with Lambda-based reward functions.</li>
-        <li class="also-item"><a href="https://huggingface.co/papers/2603.24440"><strong>CUA-Suite</strong></a> — large-scale dataset of expert desktop automation demonstrations with continuous screen recordings and reasoning annotations for training computer-use agents (14 votes).</li>
-        <li class="also-item"><a href="https://huggingface.co/papers/2603.21289"><strong>Unsupervised Self-Evolution for Multimodal Reasoning</strong></a> — self-consistency signals and Group Relative Policy Optimization for label-free multimodal reasoning improvement (12 votes).</li>
-        <li class="also-item"><a href="https://huggingface.co/papers/2603.23638"><strong>Can LLM Agents Be CFOs?</strong></a> — benchmark for long-horizon enterprise resource allocation under uncertainty reveals sustained decision-making with financial signals as an open capability gap (2 votes).</li>
       </ul>
     </section>
 
