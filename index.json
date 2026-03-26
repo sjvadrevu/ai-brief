@@ -2,6 +2,13 @@
   "issues": [
     {
       "type": "daily",
+      "date": "2026-03-26",
+      "url": "issues/daily/2026/03/2026-03-26.html",
+      "headline": "ARC-AGI-3 exposes frontier AI adaptation gap as OpenAI rounds $120B and Google ships 6x memory compression",
+      "tags": ["OpenAI", "Google", "Anthropic", "Microsoft", "Nvidia"]
+    },
+    {
+      "type": "daily",
       "date": "2026-03-25",
       "url": "issues/daily/2026/03/2026-03-25.html",
       "headline": "OpenAI kills Sora and readies Spud as Anthropic, Mistral, and Apple expand their infrastructure positions",

@@ -66,6 +66,42 @@
     .filter-btn:hover { color: #1a1917; }
     .filter-btn.active { color: #b5451b; font-weight: 500; }
     .filter-btn.active::before { content: '— '; }
+
+    /* Play button on issue rows */
+    .issue-row { display: flex; align-items: center; border-bottom: 0.5px solid rgba(26,25,23,0.08); }
+    .issue-row:first-child { border-top: 0.5px solid rgba(26,25,23,0.08); }
+    .issue-item { border-bottom: none !important; }
+    .issue-item:first-child { border-top: none !important; }
+    .issue-link { flex: 1; border-bottom: none !important; }
+    .play-btn {
+      flex-shrink: 0; cursor: pointer;
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 1.5px solid #d4d1cc; background: none;
+      color: #b8b5b0; font-size: 8px; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      margin-left: 12px; transition: border-color 0.15s, color 0.15s;
+    }
+    .play-btn:hover { border-color: #b5451b; color: #b5451b; }
+    .play-btn.playing { border-color: #b5451b; color: #b5451b; }
+
+    /* Sticky audio bar */
+    .audio-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: #1a1917; color: #fffef9;
+      display: none; align-items: center; gap: 14px;
+      padding: 10px 24px; z-index: 100;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .audio-bar.visible { display: flex; }
+    .audio-bar-play {
+      background: none; border: none; cursor: pointer;
+      color: #fffef9; font-size: 14px; flex-shrink: 0; padding: 0;
+    }
+    .audio-bar-title { font-size: 10px; letter-spacing: 0.06em; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0.7; }
+    .audio-bar-time { font-size: 10px; opacity: 0.45; white-space: nowrap; flex-shrink: 0; }
+    .audio-bar-progress { flex: 1; max-width: 200px; height: 2px; background: rgba(255,255,255,0.2); border-radius: 1px; cursor: pointer; position: relative; flex-shrink: 0; }
+    .audio-bar-fill { height: 100%; background: #b5451b; border-radius: 1px; width: 0%; pointer-events: none; }
+    @media (max-width: 600px) { .audio-bar { padding: 10px 16px; } .audio-bar-progress { max-width: 80px; } }
   </style>
 </head>
 <body>
@@ -98,6 +134,14 @@
       <ul class="filter-list" id="filter-list"></ul>
     </aside>
   </div>
+</div>
+
+<div class="audio-bar" id="audio-bar">
+  <button type="button" class="audio-bar-play" id="audio-bar-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg></button>
+  <span class="audio-bar-title" id="audio-bar-title"></span>
+  <div class="audio-bar-progress" id="audio-bar-progress"><div class="audio-bar-fill" id="audio-bar-fill"></div></div>
+  <span class="audio-bar-time" id="audio-bar-time"></span>
+  <audio id="main-audio"></audio>
 </div>
 
 <script>
@@ -182,14 +226,72 @@
       html += '<div class="month-group"><div class="month-label">' + monthLabel(groups[key][0].date) + '</div><ul class="issue-list">';
       groups[key].forEach(function (issue) {
         var d = activeTab === 'weekly' ? 'Week of ' + issue.date : activeTab === 'monthly' ? issue.date.slice(0, 7) : issue.date;
-        html += '<li class="issue-item"><a class="issue-link" href="' + issue.url + '">' +
+        var playBtn = issue.audio
+          ? '<button type="button" class="play-btn" data-audio="' + issue.audio + '" data-title="' + issue.date + '" aria-label="Play podcast"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg></button>'
+          : '';
+        html += '<li class="issue-item"><div class="issue-row">' +
+          '<a class="issue-link" href="' + issue.url + '">' +
           '<span class="issue-date">' + d + '</span>' +
           '<span class="issue-headline">' + issue.headline + '</span>' +
-          '</a></li>';
+          '</a>' + playBtn + '</div></li>';
       });
       html += '</ul></div>';
     });
     container.innerHTML = html;
+
+    document.querySelectorAll('.play-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        playAudio(btn.dataset.audio, btn.dataset.title, btn);
+      });
+    });
+  }
+
+  var currentBtn = null;
+  var audio = document.getElementById('main-audio');
+  var bar = document.getElementById('audio-bar');
+
+  function fmt(s) {
+    s = Math.floor(s || 0);
+    return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2);
+  }
+
+  audio.addEventListener('timeupdate', function () {
+    if (!audio.duration) return;
+    document.getElementById('audio-bar-fill').style.width = (audio.currentTime / audio.duration * 100) + '%';
+    document.getElementById('audio-bar-time').textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+  });
+  var svgPlay = '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>';
+  var svgPause = '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg>';
+
+  audio.addEventListener('ended', function () {
+    document.getElementById('audio-bar-play').innerHTML = svgPlay;
+    if (currentBtn) { currentBtn.innerHTML = svgPlay; currentBtn.classList.remove('playing'); }
+  });
+  document.getElementById('audio-bar-play').addEventListener('click', function () {
+    if (audio.paused) { audio.play(); this.innerHTML = svgPause; }
+    else { audio.pause(); this.innerHTML = svgPlay; }
+  });
+  document.getElementById('audio-bar-progress').addEventListener('click', function (e) {
+    if (!audio.duration) return;
+    audio.currentTime = (e.offsetX / this.offsetWidth) * audio.duration;
+  });
+
+  function playAudio(src, title, btn) {
+    if (currentBtn && currentBtn !== btn) { currentBtn.innerHTML = svgPlay; currentBtn.classList.remove('playing'); }
+    if (audio.src.endsWith(src) && !audio.paused) {
+      audio.pause();
+      btn.textContent = '▶'; btn.classList.remove('playing');
+      document.getElementById('audio-bar-play').textContent = '▶';
+      return;
+    }
+    audio.src = src;
+    audio.play();
+    btn.innerHTML = svgPause; btn.classList.add('playing');
+    document.getElementById('audio-bar-play').innerHTML = svgPause;
+    document.getElementById('audio-bar-title').textContent = 'AI Brief · ' + title;
+    bar.classList.add('visible');
+    currentBtn = btn;
   }
 
   fetch('index.json').then(function (r) { return r.json(); }).then(function (data) {
