@@ -2,6 +2,13 @@
   "issues": [
     {
       "type": "daily",
+      "date": "2026-03-27",
+      "url": "issues/daily/2026/03/2026-03-27.html",
+      "headline": "Anthropic's Mythos surfaces and voice AI ships at scale",
+      "tags": ["Anthropic", "Google", "Meta", "Amazon", "Mistral", "OpenAI"]
+    },
+    {
+      "type": "daily",
       "date": "2026-03-26",
       "url": "issues/daily/2026/03/2026-03-26.html",
       "headline": "ARC-AGI-3 exposes frontier AI adaptation gap as OpenAI rounds $120B and Google ships 6x memory compression",
