@@ -2,6 +2,13 @@
   "issues": [
     {
       "type": "daily",
+      "date": "2026-03-28",
+      "url": "issues/daily/2026/03/2026-03-28.html",
+      "headline": "Sam Altman told OpenAI staff he tried to save Anthropic from Pentagon blacklist while his company took a competing defense contract",
+      "tags": ["OpenAI", "Anthropic", "Google", "Microsoft", "Amazon", "Apple"]
+    },
+    {
+      "type": "daily",
       "date": "2026-03-27",
       "url": "issues/daily/2026/03/2026-03-27.html",
       "headline": "CMS misconfiguration exposes Anthropic's unreleased Mythos, rated unprecedented cybersecurity risk",
