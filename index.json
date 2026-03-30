@@ -2,6 +2,13 @@
   "issues": [
     {
       "type": "daily",
+      "date": "2026-03-30",
+      "url": "issues/daily/2026/03/2026-03-30.html",
+      "headline": "Qatar's helium shortage puts AI chip fabs on a two-week clock",
+      "tags": ["Meta", "OpenAI", "Anthropic", "Google"]
+    },
+    {
+      "type": "daily",
       "date": "2026-03-29",
       "url": "issues/daily/2026/03/2026-03-29.html",
       "headline": "Anthropic opens a research institute and signs a $200M deal with Snowflake",
