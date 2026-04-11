@@ -2,6 +2,62 @@
   "issues": [
     {
       "type": "daily",
+      "date": "2026-04-10",
+      "url": "issues/daily/2026/04/2026-04-10.html",
+      "headline": "Anthropic ships dual-model advisor API as Amazon discloses $15 billion AWS AI run rate",
+      "tags": ["Anthropic", "Amazon", "Google"]
+    },
+    {
+      "type": "daily",
+      "date": "2026-04-09",
+      "url": "issues/daily/2026/04/2026-04-09.html",
+      "headline": "Meta Superintelligence Labs ships Muse Spark, its first model, with a multi-agent deliberation mode built in",
+      "tags": ["Meta", "Anthropic", "OpenAI"]
+    },
+    {
+      "type": "daily",
+      "date": "2026-04-08",
+      "url": "issues/daily/2026/04/2026-04-08.html",
+      "headline": "Anthropic's Mythos security model finds thousands of vulnerabilities but is restricted to 40 organizations due to its offensive capabilities",
+      "tags": ["Anthropic", "OpenAI", "Google"]
+    },
+    {
+      "type": "daily",
+      "date": "2026-04-07",
+      "url": "issues/daily/2026/04/2026-04-07.html",
+      "headline": "Sam Altman proposes a new social contract for ASI as Meta prepares to open-source its next model family",
+      "tags": ["OpenAI", "Meta", "Anthropic"]
+    },
+    {
+      "type": "daily",
+      "date": "2026-04-06",
+      "url": "issues/daily/2026/04/2026-04-06.html",
+      "headline": "Anthropic cuts off third-party agent platforms from Claude subscriptions, forcing migration to API pricing",
+      "tags": ["Anthropic", "OpenAI", "Google"]
+    },
+    {
+      "type": "daily",
+      "date": "2026-04-03",
+      "url": "issues/daily/2026/04/2026-04-03.html",
+      "headline": "OpenAI makes its first media acquisition, buying live tech show TBPN, as a solo founder hits $1.8B in sales using only AI tools",
+      "tags": ["OpenAI", "Google", "Anthropic"]
+    },
+    {
+      "type": "daily",
+      "date": "2026-04-02",
+      "url": "issues/daily/2026/04/2026-04-02.html",
+      "headline": "Google releases Gemma 4 and ships free AI video in Google Vids with Lyria 3 and Veo 3.1",
+      "tags": ["Google", "OpenAI", "Meta"]
+    },
+    {
+      "type": "daily",
+      "date": "2026-04-01",
+      "url": "issues/daily/2026/04/2026-04-01.html",
+      "headline": "FIPO tops HuggingFace with 330 votes as RL reasoning research dominates",
+      "tags": ["OpenAI", "Google", "Anthropic"]
+    },
+    {
+      "type": "daily",
       "date": "2026-03-30",
       "url": "issues/daily/2026/03/2026-03-30.html",
       "headline": "Qatar's helium shortage puts AI chip fabs on a two-week clock",

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noai, noimageai">
+  <title>AI Brief / Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #f5f4f0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 48px 24px;
+      font-family: 'Lora', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    :root {
+      --ink:        #1a1917;
+      --ink-muted:  #4a4845;
+      --ink-faint:  #888580;
+      --ink-ghost:  #b8b5b0;
+      --bg:         #fffef9;
+      --bg-surface: #f5f4f0;
+      --border:     rgba(26,25,23,0.12);
+      --border-mid: rgba(26,25,23,0.22);
+      --border-heavy: rgba(26,25,23,0.55);
+      --accent:     #b5451b;
+      --accent-bg:  #fdf2ee;
+      --red-bg:     #fcebeb;
+      --red-border: #f09595;
+      --red-dark:   #791f1f;
+      --red-mid:    #a32d2d;
+      --radius-sm:  6px;
+      --radius-md:  8px;
+    }
+    .brief {
+      background: var(--bg);
+      max-width: 1080px;
+      width: 100%;
+      padding: 40px 56px 56px;
+      border: 0.5px solid var(--border-mid);
+      border-radius: 4px;
+    }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0;
+      margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+      white-space: nowrap; border: 0;
+    }
+    header[role="banner"] { border-top: 4px solid var(--accent); padding-top: 14px; }
+    .masthead-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 8px; margin-bottom: 14px;
+    }
+    .pub-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink-ghost); display: block; margin-bottom: 6px;
+    }
+    .pub-wordmark { display: flex; align-items: baseline; gap: 10px; }
+    .pub-name-ai {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 52px; letter-spacing: 0.05em; line-height: 1; color: var(--accent);
+    }
+    .pub-name-brief {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 52px; letter-spacing: 0.05em; line-height: 1; color: var(--ink-ghost);
+    }
+    .pub-name-sub {
+      font-family: 'Lora', serif; font-size: 13px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted);
+    }
+    .masthead-right { text-align: right; padding-bottom: 4px; }
+    .pub-date {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted);
+      display: block; margin-bottom: 3px;
+    }
+    .pub-edition { font-family: 'Lora', serif; font-size: 11px; font-style: italic; color: var(--ink-faint); }
+    .rule-heavy { height: 1px; background: var(--border-heavy); margin-bottom: 1px; }
+    .rule-light { height: 0.5px; background: var(--border); margin-bottom: 22px; }
+    .lead-section { margin-bottom: 20px; }
+    .brief-audio { margin: 16px 0 28px; }
+    .brief-audio audio { width: 100%; height: 36px; accent-color: var(--accent); }
+    .lead-headline {
+      font-family: 'Lora', serif; font-size: 28px; font-weight: 600;
+      line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 16px;
+    }
+    .lead-deck {
+      font-size: 16.5px; line-height: 1.7; font-style: italic; font-weight: 400;
+      color: var(--ink-muted); padding-left: 16px; border-left: 3px solid var(--accent);
+    }
+    .content-grid {
+      display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 40px; margin-bottom: 28px;
+      align-items: start;
+    }
+    @media (max-width: 600px) {
+      body { padding: 16px; }
+      .brief { padding: 24px 20px 32px; }
+      .content-grid { grid-template-columns: 1fr; }
+      .sidebar { border-left: none; border-top: 0.5px solid var(--border-mid); padding-left: 0; padding-top: 20px; align-self: auto; }
+      .theme-grid, .theme-grid.count-4, .theme-grid.count-5, .theme-grid.count-6 { grid-template-columns: 1fr; }
+    }
+    h3.col-heading {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+    }
+    h3.col-heading::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+    .body-p { font-size: 15px; line-height: 1.78; color: var(--ink); margin-bottom: 14px; }
+    .body-p:last-child { margin-bottom: 0; }
+    .body-p a, .research-desc a, .signal-p a, .signal-item a {
+      color: var(--ink); text-decoration: underline;
+      text-decoration-color: var(--border-mid); text-underline-offset: 3px;
+    }
+    .body-ul { font-size: 15px; line-height: 1.78; color: var(--ink); margin: 0 0 14px 0; padding-left: 18px; }
+    .body-ul li { margin-bottom: 6px; }
+    .body-ul li:last-child { margin-bottom: 0; }
+    .body-ul a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--border-mid); text-underline-offset: 3px; }
+    .sidebar { border-left: 0.5px solid var(--border-mid); padding-left: 20px; align-self: start; position: sticky; top: 24px; }
+    .sidebar-section { margin-bottom: 24px; }
+    .sidebar-section:last-child { margin-bottom: 0; }
+    h3.sidebar-head {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);
+      padding-bottom: 8px; border-bottom: 0.5px solid var(--border); margin-bottom: 12px;
+    }
+    .research-list { list-style: none; }
+    .research-item { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 0.5px solid var(--border); }
+    .research-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .research-label a {
+      font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--ink);
+      line-height: 1.4; margin-bottom: 4px; display: block;
+      text-decoration: underline; text-decoration-color: var(--border-mid); text-underline-offset: 2px;
+    }
+    .research-desc { font-size: 12.5px; line-height: 1.6; color: var(--ink-muted); font-style: italic; }
+    .signal-p { font-size: 13px; line-height: 1.65; color: var(--ink-muted); }
+    .signal-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .signal-item { font-size: 13px; line-height: 1.55; color: var(--ink-muted); padding-left: 12px; border-left: 2px solid var(--border-mid); }
+    .also-section { border-top: 0.5px solid var(--border-mid); padding-top: 20px; margin-bottom: 28px; }
+    h2.also-heading {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);
+      display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+    }
+    h2.also-heading::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--accent); }
+    .also-list { list-style: none; column-count: 2; column-gap: 32px; }
+    @media (max-width: 600px) { .also-list { column-count: 1; } }
+    .also-item {
+      font-size: 13px; line-height: 1.6; color: var(--ink);
+      padding: 5px 0; border-bottom: 0.5px solid var(--border);
+      break-inside: avoid;
+    }
+    .also-item:last-child { border-bottom: none; }
+    .also-item strong { color: var(--ink); font-weight: 600; }
+    .also-item a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--border-mid); text-underline-offset: 2px; }
+    /* Weekly themed "Also in AI" */
+    .also-themes { display: flex; flex-direction: column; gap: 20px; }
+    .also-theme { }
+    h3.also-theme-heading {
+      font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted);
+      margin-bottom: 6px;
+    }
+    /* Expand / collapse */
+    details.expand-more { margin-top: 4px; }
+    details.expand-more summary {
+      font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+      cursor: pointer; list-style: none; padding: 4px 0; -webkit-user-select: none; user-select: none;
+    }
+    details.expand-more summary::-webkit-details-marker { display: none; }
+    details.expand-more summary::before { content: '+ '; }
+    details.expand-more[open] summary::before { content: '- '; }
+    details.expand-more .also-list { margin-top: 4px; }
+    details.expand-more .research-list { margin-top: 8px; }
+    .stories-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    @media (max-width: 600px) { .stories-grid { grid-template-columns: 1fr; } }
+    .story-card {
+      background: var(--bg); border-radius: 10px; overflow: hidden;
+      box-shadow: 0 1px 3px rgba(26,25,23,0.07), 0 1px 8px rgba(26,25,23,0.04);
+      border: 0.5px solid var(--border); display: flex; flex-direction: column;
+      transition: box-shadow 0.15s;
+    }
+    .story-card:hover { box-shadow: 0 4px 16px rgba(26,25,23,0.11); }
+    .story-card--wide { grid-column: 1 / -1; }
+    .story-card-img { display: block; width: 100%; height: 120px; object-fit: cover; }
+    .story-card-body { padding: 14px 16px; flex: 1; }
+    h4.story-head {
+      font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 7px;
+    }
+    .story-lead {
+      font-family: 'Lora', serif; font-size: 13.5px; font-weight: 600;
+      line-height: 1.5; color: var(--ink);
+    }
+    .story-lead a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--border-mid); text-underline-offset: 3px; }
+    .story-facts {
+      list-style: none; padding: 0; margin: 10px 0 0;
+      border-top: 0.5px solid var(--border); padding-top: 8px;
+    }
+    .story-facts li {
+      font-size: 12px; line-height: 1.55; color: var(--ink-muted);
+      padding: 3px 0 3px 13px; position: relative;
+    }
+    .story-facts li::before {
+      content: '.'; position: absolute; left: 2px;
+      color: var(--accent); font-size: 14px; line-height: 1.2;
+    }
+    .story-facts a { color: var(--ink-muted); text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 2px; }
+    .trending-section { border-top: 0.5px solid var(--border-mid); padding-top: 20px; margin-bottom: 32px; }
+    h2.trending-heading {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);
+      display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+    }
+    h2.trending-heading::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--accent); }
+    .trend-items {
+      list-style: none;
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 0.5px solid var(--border);
+    }
+    .trend-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 11px 12px; border-bottom: 0.5px solid var(--border);
+    }
+    .trend-item .trend-rank { min-width: 22px; flex-shrink: 0; }
+    .trend-item .trend-main { flex: 1; min-width: 0; }
+    .trend-item .trend-votes { flex-shrink: 0; }
+    .trend-item:nth-child(odd) { border-right: 0.5px solid var(--border); padding-left: 0; }
+    .trend-item:nth-child(even) { padding-right: 0; }
+    @media (max-width: 600px) {
+      .trend-items { grid-template-columns: 1fr; }
+      .trend-item { padding: 11px 0; }
+      .trend-item:nth-child(odd) { border-right: none; }
+    }
+    .trend-thumb {
+      width: 32px; height: 32px; border-radius: 8px; object-fit: cover;
+      flex-shrink: 0; border: 0.5px solid var(--border);
+    }
+    .trend-rank {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      color: var(--ink-ghost); text-align: right;
+    }
+    .trend-main { min-width: 0; }
+    .trend-name {
+      font-family: 'Lora', serif; font-size: 13.5px; font-weight: 600;
+      color: var(--ink); display: block; margin-bottom: 2px;
+    }
+    .trend-name a {
+      color: var(--ink); text-decoration: underline;
+      text-decoration-color: var(--border-mid); text-underline-offset: 3px;
+    }
+    .trend-why {
+      font-family: 'Lora', serif; font-size: 12px; font-style: italic;
+      color: var(--ink-muted); display: block;
+    }
+    .trend-votes {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      color: var(--ink-ghost); white-space: nowrap;
+    }
+    .issue-nav {
+      max-width: 1080px; width: 100%; margin: 16px auto 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0;
+    }
+    .issue-nav-link {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted);
+      text-decoration: none;
+    }
+    .issue-nav-link:hover { color: var(--accent); }
+    .issue-nav-index { color: var(--ink-ghost); }
+    footer[role="contentinfo"] {
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 2px solid var(--ink); padding-top: 10px; flex-wrap: wrap; gap: 8px;
+    }
+    .foot-wordmark {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-ghost);
+    }
+    .foot-meta {
+      font-family: 'JetBrains Mono', monospace; font-size: 9px;
+      letter-spacing: 0.1em; color: var(--ink-ghost); text-transform: uppercase;
+    }
+    .media-figure {
+      margin: 20px 0; border-radius: var(--radius-sm); overflow: hidden;
+      border: 0.5px solid var(--border-mid);
+    }
+    .media-figure img {
+      display: block; width: 100%; height: auto; max-height: 320px;
+      object-fit: cover;
+    }
+    .media-caption {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      color: var(--ink-ghost); padding: 8px 12px;
+      background: var(--bg-surface); letter-spacing: 0.05em;
+    }
+    .media-video {
+      margin: 20px 0; border-radius: var(--radius-sm); overflow: hidden;
+      border: 0.5px solid var(--border-mid);
+      position: relative; padding-bottom: 56.25%; height: 0;
+    }
+    .media-video iframe {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+    }
+    .link-card {
+      display: flex; align-items: flex-start; gap: 12px;
+      border: 0.5px solid var(--border-mid); border-radius: var(--radius-md);
+      background: var(--bg); padding: 12px 14px; margin: 12px 0;
+      text-decoration: none; color: inherit;
+      transition: border-color 0.15s;
+    }
+    .link-card:hover { border-color: var(--border-heavy); }
+    .link-card-body { min-width: 0; }
+    .link-card-domain {
+      font-family: 'JetBrains Mono', monospace; font-size: 9px;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--ink-ghost); margin-bottom: 4px; display: block;
+    }
+    .link-card-title {
+      font-family: 'Lora', serif; font-size: 13px; font-weight: 600;
+      color: var(--ink); line-height: 1.4; display: block; margin-bottom: 3px;
+    }
+    .link-card-desc {
+      font-size: 12px; color: var(--ink-muted); line-height: 1.5;
+      font-style: italic; display: block;
+    }
+  </style>
+  <script src="https://res.cdn.office.net/teams-js/2.22.0/js/MicrosoftTeams.min.js"></script>
+  <script>
+    microsoftTeams.app.initialize().then(() => {
+      microsoftTeams.app.notifySuccess();
+    });
+  </script>
+</head>
+<body>
+<article class="brief" aria-label="AI Brief newsletter">
+
+  <header role="banner">
+    <div class="masthead-inner">
+      <div class="pub-wordmark">
+        <span class="pub-name-ai">AI</span>
+        <span class="pub-name-brief">Brief</span>
+      </div>
+      <div class="masthead-right">
+        <time class="pub-date" datetime="2026-04-10">April 10, 2026</time>
+        <span class="pub-edition">Thursday edition</span>
+      </div>
+    </div>
+    <div class="rule-heavy" role="separator" aria-hidden="true"></div>
+    <div class="rule-light" role="separator" aria-hidden="true"></div>
+  </header>
+
+  <main>
+
+    <section class="lead-section" aria-labelledby="lead-heading">
+      <h2 class="lead-headline" id="lead-heading">Anthropic ships dual-model advisor API as Amazon discloses $15 billion AWS AI run rate</h2>
+      <p class="lead-deck">Anthropic opened its Opus advisor API to developers, pairing high-capability reasoning with cheaper Sonnet or Haiku executors; Amazon's Andy Jassy put a $15B annual run rate on AWS AI and defended a $200B capex commitment; Perplexity hit $450M ARR with full bank account integration via Plaid; AWS launched a governed agent catalog inside Bedrock AgentCore; Oxford published an AI tool predicting heart failure five years early from CT scans; and France set a government-wide deadline to exit Windows for Linux.</p>
+    </section>
+
+    <div class="content-grid">
+      <section aria-labelledby="matters-heading">
+        <h3 class="col-heading" id="matters-heading">What matters today</h3>
+        <div class="stories-grid">
+
+          <div class="story-card story-card--wide">
+            <div class="story-card-body">
+              <h4 class="story-head">ANTHROPIC OPUS ADVISOR API</h4>
+              <p class="story-lead"><a href="https://claude.com/blog/the-advisor-strategy">Anthropic</a> shipped the advisor tool (beta header <code>advisor-tool-2026-03-01</code>) for the Claude API, enabling a dual-model architecture where Opus acts as an on-demand consultant to a Sonnet or Haiku executor.</p>
+              <ul class="story-facts">
+                <li>Sonnet + Opus advisor delivers +2.7 percentage points on SWE-bench at -11.9% cost vs. Sonnet alone.</li>
+                <li>Haiku + Opus advisor reaches 41.2% on BrowseComp, over 2x Haiku's solo 19.7%, at 85% lower cost than Sonnet alone.</li>
+                <li>Advisor responses average 400-700 tokens and integrate with web search, code execution, and other tools in the same call.</li>
+                <li>Token billing is separated at each model's rate; <code>max_uses</code> parameter caps advisor invocations per run.</li>
+                <li><a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool">Full API docs</a> are available on the Claude platform.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-card-body">
+              <h4 class="story-head">AMAZON AWS AI INFRASTRUCTURE</h4>
+              <p class="story-lead"><a href="https://www.cnbc.com/2026/04/09/amazon-ceo-andy-jassy-ai-spending.html">Andy Jassy's 2026 shareholder letter</a> disclosed that AWS AI has reached a $15 billion annual run rate, with Amazon's custom chip business generating over $20 billion annually.</p>
+              <ul class="story-facts">
+                <li>Trainium2 is fully sold out; Trainium3 is nearly fully subscribed.</li>
+                <li>2026 capex commitment of approximately $200 billion is primarily for AI infrastructure.</li>
+                <li>Amazon's free cash flow fell from $38 billion to $11 billion as capital spending rose by $50.7 billion.</li>
+                <li><a href="https://www.geekwire.com/2026/not-on-a-hunch-andy-jassy-defends-amazons-200b-spending-spree/">Jassy's framing in GeekWire</a>: "We're not investing on a hunch."</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-card-body">
+              <h4 class="story-head">PERPLEXITY BANK INTEGRATION</h4>
+              <p class="story-lead"><a href="https://plaid.com/blog/plaid-perplexity-ai-financial-insights-integration/">Perplexity expanded its Plaid integration</a> beyond investment accounts to include checking, savings, credit cards, loans, and mortgages.</p>
+              <ul class="story-facts">
+                <li>Plaid powers nearly one million daily account connections and reaches more than half of American bank account holders.</li>
+                <li>Perplexity's Computer agent drove a 50% monthly revenue jump, pushing the company to $450M annualized run rate as of March.</li>
+                <li>Feature is live on desktop for US and Canada users; supports queries on spending by category, net worth, and debt payoff timelines.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-card-body">
+              <h4 class="story-head">AWS BEDROCK AGENT REGISTRY</h4>
+              <p class="story-lead"><a href="https://aws.amazon.com/about-aws/whats-new/2026/04/aws-agent-registry-in-agentcore-preview/">AWS Agent Registry</a>, part of Amazon Bedrock AgentCore, launched in preview on April 9 as a private, searchable catalog for agents, tools, skills, MCP servers, and custom enterprise resources.</p>
+              <ul class="story-facts">
+                <li>Semantic search lets developers query in natural language: searching "payment processing" surfaces tools tagged as "billing" or "invoicing."</li>
+                <li>Approval workflows and CloudTrail audit trails address enterprise governance requirements.</li>
+                <li>Accessible via Console, CLI/SDK, or as an MCP server queryable from IDEs.</li>
+                <li>Available in five regions; free during preview period.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-card-body">
+              <h4 class="story-head">FRANCE LINUX TRANSITION</h4>
+              <p class="story-lead">France announced a government-wide transition from Windows to Linux, with every ministry required to submit implementation plans by autumn 2026, led by <a href="https://www.numerique.gouv.fr/sinformer/espace-presse/souverainete-numerique-reduction-dependances-extra-europeennes/">DINUM</a> under a digital sovereignty mandate.</p>
+              <ul class="story-facts">
+                <li>Scope extends beyond desktops: collaboration tools, antivirus, AI platforms, databases, and network equipment are all in scope.</li>
+                <li>80,000 National Health Insurance Fund employees already migrated from Microsoft Teams, Zoom, and Dropbox to open-source alternatives.</li>
+                <li>Coverage: <a href="https://techcrunch.com/2026/04/10/france-to-ditch-windows-for-linux-to-reduce-reliance-on-us-tech/">TechCrunch</a> and <a href="https://www.tomshardware.com/software/windows/french-government-say-its-ditching-windows-for-linux-country-accelerates-plans-to-ditch-us-based-software-in-digital-sovereignty-push">Tom's Hardware</a>.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-card-body">
+              <h4 class="story-head">OXFORD HEART FAILURE AI</h4>
+              <p class="story-lead">A team at the <a href="https://www.rdm.ox.ac.uk/news/new-ai-tool-can-predict-heart-failure-at-least-five-years-before-it-develops">University of Oxford</a>, led by Professor Charalambos Antoniades, published an AI tool that detects heart failure risk from routine CT scans by identifying microscopic textural changes in cardiac fat tissue.</p>
+              <ul class="story-facts">
+                <li>Tested on 70,000+ patients across nine NHS Trusts over a decade; algorithm achieved 86% accuracy.</li>
+                <li>Patients in the highest-risk group were 20 times more likely to develop heart failure than those in the lowest group.</li>
+                <li>Team is seeking NHS regulatory approval and plans to expand the tool to any chest CT, including lung imaging.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <aside class="sidebar" aria-label="Supporting intelligence">
+        <section class="sidebar-section">
+          <h3 class="sidebar-head">Research worth watching</h3>
+          <ul class="research-list">
+            <li class="research-item">
+              <span class="research-label"><a href="https://huggingface.co/papers/2604.06628">Rethinking Generalization in Reasoning SFT</a></span>
+              <p class="research-desc">SFT and RL show conditional cross-domain generalization in reasoning tasks, with asymmetric tradeoffs between reasoning improvement and safety degradation. 157 votes.</p>
+            </li>
+            <li class="research-item">
+              <span class="research-label"><a href="https://huggingface.co/papers/2604.08377">SkillClaw: Let Skills Evolve Collectively with Agentic Evolver</a></span>
+              <p class="research-desc">Aggregates user interactions across multi-user LLM agent systems to autonomously update reusable skills ecosystem-wide. 147 votes.</p>
+            </li>
+            <li class="research-item">
+              <span class="research-label"><a href="https://huggingface.co/papers/2604.07430">HY-Embodied-0.5: Embodied Foundation Models for Real-World Agents</a></span>
+              <p class="research-desc">Foundation model family using Mixture-of-Transformers architecture with iterative post-training for embodied agents. 130 votes.</p>
+            </li>
+            <li class="research-item">
+              <span class="research-label"><a href="https://huggingface.co/papers/2604.08523">ClawBench: Can AI Agents Complete Everyday Online Tasks?</a></span>
+              <p class="research-desc">153 real-world tasks across 144 platforms testing AI agents on complex multi-step online workflows. 88 votes.</p>
+            </li>
+          </ul>
+        </section>
+        <section class="sidebar-section">
+          <h3 class="sidebar-head">Community signal</h3>
+          <ul class="signal-list">
+            <li class="signal-item"><a href="https://www.eff.org/deeplinks/2026/04/eff-leaving-x">EFF leaving X</a> — Top HN story: Electronic Frontier Foundation announces departure from X over policy concerns (1,378 points, 1,220 comments).</li>
+            <li class="signal-item"><a href="https://obdev.at/products/littlesnitch-linux/index.html">LittleSnitch for Linux</a> — Network monitoring tool now available on Linux, attracting significant HN interest (1,335 points, 445 comments).</li>
+            <li class="signal-item"><a href="https://www.numerique.gouv.fr/sinformer/espace-presse/souverainete-numerique-reduction-dependances-extra-europeennes/">France Linux Desktop Plan</a> — HN discussion on the French government's Windows exit generating debate around digital sovereignty (786 points, 406 comments).</li>
+            <li class="signal-item"><a href="https://github.com/marimo-team/marimo-pair">Marimo pair</a> — Show HN about reactive Python notebooks designed as execution environments for AI agents (102 points, 25 comments).</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <nav class="trending-section">
+      <h2 class="trending-heading">Product Hunt: Top Launches</h2>
+      <ol class="trend-items">
+        <li class="trend-item">
+          <span class="trend-rank">1</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/8c5430f5-834a-4f5a-94e6-cb3c0d0383db.png?auto=format" alt="Integrations in Spine">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/spine-2">Integrations in Spine</a><span class="trend-why">AI that synthesizes and researches info across multiple apps</span></span>
+          <span class="trend-votes">&#9650; 219</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">2</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/ae49ce7d-30a4-457b-823a-2e1ee8d44dbb.png?auto=format" alt="Claude Advisor tool">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/claude">Claude Advisor tool</a><span class="trend-why">Pair Opus as advisor with Sonnet or Haiku as executor</span></span>
+          <span class="trend-votes">&#9650; 217</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">3</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/f27f20c5-816f-4210-bbfa-8bdf797ffa3b.jpeg?auto=format" alt="Google Finance">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/google">Google Finance</a><span class="trend-why">Ask complex finance questions, get AI-grounded answers</span></span>
+          <span class="trend-votes">&#9650; 181</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">4</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/148c768a-6e03-49a7-afa5-7af99ba7369c.png?auto=format" alt="SoulLink">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/soullinkai">SoulLink</a><span class="trend-why">Mobile 3D Vibe Coding Partner</span></span>
+          <span class="trend-votes">&#9650; 151</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">5</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/5270d4ca-db55-4a9a-9162-5ccf254fa599.png?auto=format" alt="Minty">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/outtalent">Minty</a><span class="trend-why">AI companion for building a clear career path</span></span>
+          <span class="trend-votes">&#9650; 118</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">6</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/ce9522f1-913f-4450-9354-d142aad20d62.png?auto=format" alt="Manus Skills">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/manus-skills">Manus Skills</a><span class="trend-why">Package Manus workflows into reusable agent Skills</span></span>
+          <span class="trend-votes">&#9650; 116</span>
+        </li>
+      </ol>
+    </nav>
+
+    <section class="also-section">
+      <h2 class="also-heading">Also in AI today</h2>
+      <ul class="also-list">
+        <li class="also-item"><a href="https://www.axios.com/newsletters/axios-ai-govt"><strong>OpenAI and Anthropic</strong></a> — pitching competing AI governance frameworks in Washington, with OpenAI focusing on state-level wins and Anthropic expanding its DC presence.</li>
+        <li class="also-item"><a href="https://www.politico.com/news/2026/04/09/florida-uthmeier-openai-chatgpt-probe-00865417"><strong>Florida AG investigation into OpenAI</strong></a> — Florida Attorney General James Uthmeier opened a probe alleging ChatGPT assisted in planning a shooting at Florida State University.</li>
+        <li class="also-item"><a href="https://www.rundown.ai/tools/claude-cowork"><strong>Anthropic Claude Cowork</strong></a> — now generally available for all users.</li>
+        <li class="also-item"><a href="https://x.com/OpenAI/status/2042295688323875316"><strong>OpenAI Pro tier</strong></a> — launched at $100/month with 5x Codex usage capacity vs. Plus.</li>
+        <li class="also-item"><a href="https://blog.google/company-news/inside-google/around-the-globe/google-europe/united-kingdom/ai-mode-restaurants-uk/"><strong>Google AI Mode</strong></a> — now handles restaurant reservations in the UK inside Google Search.</li>
+        <li class="also-item"><a href="https://blog.google/innovation-and-ai/products/gemini-app/3d-models-charts/"><strong>Google Gemini 3D models</strong></a> — now generates interactive 3D models and simulations from natural language questions.</li>
+        <li class="also-item"><a href="https://aws.amazon.com/blogs/machine-learning/introducing-stateful-mcp-client-capabilities-on-amazon-bedrock-agentcore-runtime/"><strong>AWS Bedrock AgentCore stateful MCP</strong></a> — added stateful MCP client support with user input, LLM sampling, and progress streaming for long-running tasks.</li>
+        <li class="also-item"><a href="https://github.com/marimo-team/marimo-pair"><strong>Marimo</strong></a> — released reactive Python notebooks designed as agent execution environments.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <span class="foot-wordmark">AI Brief</span>
+    <span class="foot-meta">Thursday edition · April 10, 2026</span>
+  </footer>
+
+  <nav class="issue-nav" aria-label="Browse issues" data-date="2026-04-10">
+    <a class="issue-nav-link" id="nav-prev" href="../../../../">&#8592; Previous</a>
+    <a class="issue-nav-link issue-nav-index" href="../../../../">All issues</a>
+    <a class="issue-nav-link" id="nav-next" href="../../../../">Next &#8594;</a>
+  </nav>
+
+</article>
+
+<script>
+(function(){
+  var date = document.querySelector('.issue-nav').dataset.date;
+  fetch('../../../../index.json').then(function(r){return r.json();}).then(function(data){
+    var issues = data.issues || [];
+    var i = issues.findIndex(function(x){return x.date===date;});
+    var prev = document.getElementById('nav-prev');
+    var next = document.getElementById('nav-next');
+    if(i < issues.length-1){ prev.href = '../../../../'+issues[i+1].url; prev.textContent = '\u2190 '+issues[i+1].date; }
+    else { prev.style.visibility='hidden'; }
+    if(i > 0){ next.href = '../../../../'+issues[i-1].url; next.textContent = issues[i-1].date+' \u2192'; }
+    else { next.style.visibility='hidden'; }
+  }).catch(function(){ document.querySelector('.issue-nav').style.display='none'; });
+})();
+</script>
+</body>
+</html>

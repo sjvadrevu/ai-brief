@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noai, noimageai">
+  <title>AI Brief / Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f5f4f0; min-height: 100vh; display: flex; justify-content: center; padding: 48px 24px; font-family: 'Lora', Georgia, serif; -webkit-font-smoothing: antialiased; }
+    :root { --ink: #1a1917; --ink-muted: #4a4845; --ink-faint: #888580; --ink-ghost: #b8b5b0; --bg: #fffef9; --bg-surface: #f5f4f0; --border: rgba(26,25,23,0.12); --border-mid: rgba(26,25,23,0.22); --border-heavy: rgba(26,25,23,0.55); --accent: #b5451b; --radius-sm: 6px; --radius-md: 8px; }
+    .brief { background: var(--bg); max-width: 1080px; width: 100%; padding: 40px 56px 56px; border: 0.5px solid var(--border-mid); border-radius: 4px; }
+    header[role="banner"] { border-top: 4px solid var(--accent); padding-top: 14px; }
+    .masthead-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .pub-wordmark { display: flex; align-items: baseline; gap: 10px; }
+    .pub-name-ai { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 52px; letter-spacing: 0.05em; line-height: 1; color: var(--accent); }
+    .pub-name-brief { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 52px; letter-spacing: 0.05em; line-height: 1; color: var(--ink-ghost); }
+    .masthead-right { text-align: right; padding-bottom: 4px; }
+    .pub-date { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); display: block; margin-bottom: 3px; }
+    .pub-edition { font-family: 'Lora', serif; font-size: 11px; font-style: italic; color: var(--ink-faint); }
+    .rule-heavy { height: 1px; background: var(--border-heavy); margin-bottom: 1px; }
+    .rule-light { height: 0.5px; background: var(--border); margin-bottom: 22px; }
+    .lead-section { margin-bottom: 20px; }
+    .lead-headline { font-family: 'Lora', serif; font-size: 28px; font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 16px; }
+    .lead-deck { font-size: 16.5px; line-height: 1.7; font-style: italic; font-weight: 400; color: var(--ink-muted); padding-left: 16px; border-left: 3px solid var(--accent); }
+    .content-grid { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 40px; margin-bottom: 28px; align-items: start; }
+    @media (max-width: 600px) { body { padding: 16px; } .brief { padding: 24px 20px 32px; } .content-grid { grid-template-columns: 1fr; } .sidebar { border-left: none; border-top: 0.5px solid var(--border-mid); padding-left: 0; padding-top: 20px; } }
+    h3.col-heading { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+    h3.col-heading::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+    .sidebar { border-left: 0.5px solid var(--border-mid); padding-left: 20px; align-self: start; position: sticky; top: 24px; }
+    .sidebar-section { margin-bottom: 24px; }
+    .sidebar-section:last-child { margin-bottom: 0; }
+    h3.sidebar-head { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); padding-bottom: 8px; border-bottom: 0.5px solid var(--border); margin-bottom: 12px; }
+    .research-list { list-style: none; }
+    .research-item { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 0.5px solid var(--border); }
+    .research-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .research-label a { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--ink); line-height: 1.4; margin-bottom: 4px; display: block; text-decoration: underline; text-decoration-color: var(--border-mid); text-underline-offset: 2px; }
+    .research-desc { font-size: 12.5px; line-height: 1.6; color: var(--ink-muted); font-style: italic; }
+    .stories-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    @media (max-width: 600px) { .stories-grid { grid-template-columns: 1fr; } }
+    .story-card { background: var(--bg); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(26,25,23,0.07), 0 1px 8px rgba(26,25,23,0.04); border: 0.5px solid var(--border); display: flex; flex-direction: column; }
+    .story-card--wide { grid-column: 1 / -1; }
+    .story-card-body { padding: 14px 16px; flex: 1; }
+    h4.story-head { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 7px; }
+    .story-lead { font-family: 'Lora', serif; font-size: 13.5px; font-weight: 600; line-height: 1.5; color: var(--ink); }
+    .story-lead a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--border-mid); text-underline-offset: 3px; }
+    .story-facts { list-style: none; padding: 0; margin: 10px 0 0; border-top: 0.5px solid var(--border); padding-top: 8px; }
+    .story-facts li { font-size: 12px; line-height: 1.55; color: var(--ink-muted); padding: 3px 0 3px 13px; position: relative; }
+    .story-facts li::before { content: '·'; position: absolute; left: 2px; color: var(--accent); font-size: 14px; line-height: 1.2; }
+    .also-section { border-top: 0.5px solid var(--border-mid); padding-top: 20px; margin-bottom: 28px; }
+    h2.also-heading { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    h2.also-heading::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--accent); }
+    .also-list { list-style: none; column-count: 2; column-gap: 32px; }
+    @media (max-width: 600px) { .also-list { column-count: 1; } }
+    .also-item { font-size: 13px; line-height: 1.6; color: var(--ink); padding: 5px 0; border-bottom: 0.5px solid var(--border); break-inside: avoid; }
+    .also-item:last-child { border-bottom: none; }
+    .also-item a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--border-mid); text-underline-offset: 2px; }
+    .trending-section { border-top: 0.5px solid var(--border-mid); padding-top: 20px; margin-bottom: 32px; }
+    h2.trending-heading { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    h2.trending-heading::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--accent); }
+    .trend-items { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 0.5px solid var(--border); }
+    .trend-item { display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-bottom: 0.5px solid var(--border); }
+    .trend-item:nth-child(odd) { border-right: 0.5px solid var(--border); padding-left: 0; }
+    .trend-item:nth-child(even) { padding-right: 0; }
+    @media (max-width: 600px) { .trend-items { grid-template-columns: 1fr; } .trend-item { padding: 11px 0; } .trend-item:nth-child(odd) { border-right: none; } }
+    .trend-thumb { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; flex-shrink: 0; border: 0.5px solid var(--border); }
+    .trend-rank { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ink-ghost); text-align: right; min-width: 22px; flex-shrink: 0; }
+    .trend-main { min-width: 0; flex: 1; }
+    .trend-name { font-family: 'Lora', serif; font-size: 13.5px; font-weight: 600; color: var(--ink); display: block; margin-bottom: 2px; }
+    .trend-name a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--border-mid); text-underline-offset: 3px; }
+    .trend-why { font-family: 'Lora', serif; font-size: 12px; font-style: italic; color: var(--ink-muted); display: block; }
+    .trend-votes { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ink-ghost); white-space: nowrap; flex-shrink: 0; }
+    .issue-nav { max-width: 1080px; width: 100%; margin: 16px auto 0; display: flex; justify-content: space-between; align-items: center; padding: 12px 0; }
+    .issue-nav-link { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); text-decoration: none; }
+    .issue-nav-link:hover { color: var(--accent); }
+    .issue-nav-index { color: var(--ink-ghost); }
+    footer[role="contentinfo"] { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid var(--ink); padding-top: 10px; flex-wrap: wrap; gap: 8px; }
+    .foot-wordmark { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-ghost); }
+    .foot-meta { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: var(--ink-ghost); text-transform: uppercase; }
+  </style>
+  <script src="https://res.cdn.office.net/teams-js/2.22.0/js/MicrosoftTeams.min.js"></script>
+  <script>microsoftTeams.app.initialize().then(() => { microsoftTeams.app.notifySuccess(); });</script>
+</head>
+<body>
+<article class="brief" aria-label="AI Brief newsletter">
+
+  <header role="banner">
+    <div class="masthead-inner">
+      <div class="pub-wordmark"><span class="pub-name-ai">AI</span><span class="pub-name-brief">Brief</span></div>
+      <div class="masthead-right">
+        <time class="pub-date" datetime="2026-04-06">April 6, 2026</time>
+        <span class="pub-edition">Sunday edition</span>
+      </div>
+    </div>
+    <div class="rule-heavy" role="separator" aria-hidden="true"></div>
+    <div class="rule-light" role="separator" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <section class="lead-section" aria-labelledby="lead-heading">
+      <h2 class="lead-headline" id="lead-heading">Anthropic cuts off third-party agent platforms from Claude subscriptions, forcing migration to API pricing</h2>
+      <p class="lead-deck">Anthropic blocked platforms like OpenClaw from accessing Claude through flat-rate subscriptions, requiring them to pay via API or usage add-ons. Agent workloads consume far more tokens than typical chat use and were straining capacity. Netflix released VOID, open-source physics-aware video object removal that rewrites scene dynamics. On research: GrandCode beat all human participants including grandmasters in three consecutive live Codeforces competitions.</p>
+    </section>
+
+    <div class="content-grid">
+      <section aria-labelledby="matters-heading">
+        <h3 class="col-heading" id="matters-heading">What matters today</h3>
+        <div class="stories-grid">
+
+          <div class="story-card story-card--wide">
+            <div class="story-card-body">
+              <h4 class="story-head">ANTHROPIC BLOCKS AGENT PLATFORMS</h4>
+              <p class="story-lead">Anthropic cut off agent platforms including OpenClaw from Claude subscriptions, citing capacity strain from agent workloads that run around the clock and consume far more tokens than chatbot use.</p>
+              <ul class="story-facts">
+                <li>Users must now pay via Claude's API or new usage add-ons; flat-rate subscription no longer covers agent tool access.</li>
+                <li>Anthropic had already imposed 5-hour session caps during peak hours before this broader restriction.</li>
+                <li>Timing is controversial: OpenAI is actively courting the same developer and agent-builder audience.</li>
+                <li>Reflects a structural tension: agent workloads are unbounded in consumption, making flat-rate pricing economically unviable at scale.</li>
+                <li>Agent platform operators face an immediate pricing model renegotiation with their own customers downstream.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-card-body">
+              <h4 class="story-head">NETFLIX VOID: PHYSICS VIDEO</h4>
+              <p class="story-lead">Netflix released VOID, an open-source framework that removes objects from video while rewriting the physics consequences across the scene, not just painting over the gap.</p>
+              <ul class="story-facts">
+                <li>Unlike typical inpainting tools, VOID simulates what physically happens in the scene after object removal.</li>
+                <li>Human evaluators preferred VOID results over Runway outputs two-thirds of the time.</li>
+                <li>Open-source release; applicable to VFX pipelines, content creation, and training data generation.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-card-body">
+              <h4 class="story-head">GRANDCODE: 311 VOTES</h4>
+              <p class="story-lead"><a href="https://huggingface.co/papers/2604.02721">GrandCode</a> is a multi-agent RL system using Agentic GRPO that took first place in three consecutive live Codeforces competitions, beating all human participants including legendary grandmasters.</p>
+              <ul class="story-facts">
+                <li>Verified in real competitions against active human participants, not static benchmarks.</li>
+                <li>Agentic GRPO extends policy optimization to multi-stage agent rollouts, not just single-step outputs.</li>
+                <li>Top paper on HuggingFace this day with 311 votes.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <aside class="sidebar" aria-label="Supporting intelligence">
+        <section class="sidebar-section">
+          <h3 class="sidebar-head">Research worth watching</h3>
+          <ul class="research-list">
+            <li class="research-item">
+              <span class="research-label"><a href="https://huggingface.co/papers/2604.03144">InCoder-32B-Thinking: Industrial Code</a></span>
+              <p class="research-desc">Error-driven chain-of-thought for hardware-constrained code. 81.3% on LiveCodeBench v5, 84.0% on CAD-Coder. 222 votes.</p>
+            </li>
+            <li class="research-item">
+              <span class="research-label"><a href="https://huggingface.co/papers/2604.03128">Self-Distilled RLVR</a></span>
+              <p class="research-desc">Combines RLVR with self-distillation for stable post-training. Token-level supervision prevents the divergence that plagues pure RLVR. 152 votes.</p>
+            </li>
+            <li class="research-item">
+              <span class="research-label"><a href="https://huggingface.co/papers/2604.02947">AgentHazard: Harmful Computer-Use Agents</a></span>
+              <p class="research-desc">73.63% attack success rate on Claude Code when powered by Qwen3-Coder. Model alignment alone does not guarantee safe autonomous agents. 18 votes.</p>
+            </li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <section class="trending-section" aria-labelledby="trending-heading">
+      <h2 class="trending-heading" id="trending-heading">Product Hunt: Top Launches</h2>
+      <ol class="trend-items">
+        <li class="trend-item">
+          <span class="trend-rank">1</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/10dd95f7-48ed-412b-8322-b8ad7da90514.png?auto=format" alt="Moonshot">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/moonshot-13">Moonshot</a><span class="trend-why">Track the Artemis II mission from your Mac</span></span>
+          <span class="trend-votes">▲ 439</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">2</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/bed5efab-77d9-48df-b692-f7edf474cc45.png?auto=format" alt="KREV">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/krev">KREV</a><span class="trend-why">AI creative agents for ecommerce brands</span></span>
+          <span class="trend-votes">▲ 289</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">3</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/fcc0f481-62f4-479f-977d-66cb0daf9d11.jpeg?auto=format" alt="AgentPulse by Rectify">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/rectify">AgentPulse by Rectify</a><span class="trend-why">Everything in OpenClaw's terminal, you can now do visually</span></span>
+          <span class="trend-votes">▲ 285</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">4</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/5053b3a8-03ce-4b29-9cee-780a2c4f3ecb.png?auto=format" alt="Walkie">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/b150">Walkie</a><span class="trend-why">Free local AI voice dictation tool</span></span>
+          <span class="trend-votes">▲ 229</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">5</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/9861ccc7-b1a7-46a2-b5de-8c9097fa1f0a.png?auto=format" alt="Predflow AI">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/predflow-2">Predflow AI</a><span class="trend-why">Your AI agent for ad performance</span></span>
+          <span class="trend-votes">▲ 182</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">6</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/a6c4476e-b145-4ad3-bb4e-6164f1791ff5.x-icon?auto=format" alt="Metoro">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/metoro">Metoro</a><span class="trend-why">AI SRE that detects, root causes &amp; auto-fixes K8s incidents</span></span>
+          <span class="trend-votes">▲ 155</span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="also-section">
+      <h2 class="also-heading">Also in AI today</h2>
+      <ul class="also-list">
+        <li class="also-item"><strong>Import AI 452:</strong> Jack Clark covers scaling laws for cyberwar, rising tides of AI automation, and conflicting GDP forecasting models for AI economic impact.</li>
+        <li class="also-item"><strong>Agent infrastructure:</strong> A new infrastructure stack is forming beneath AI agent deployments. Memory, tool execution, auth, and orchestration layers are consolidating into discrete vendor categories.</li>
+        <li class="also-item"><a href="https://huggingface.co/papers/2604.02317"><strong>SimpleStream baseline</strong></a> found that a sliding window over recent frames matches or beats complex streaming VideoLLM architectures on OVO-Bench and StreamingBench. 69 votes.</li>
+        <li class="also-item"><a href="https://huggingface.co/papers/2604.03016"><strong>Agentic-MME benchmark</strong></a> found Gemini3-pro achieves only 56.3% on multimodal agent tasks and 23.0% on hardest-level tasks requiring proper tool invocation. 32 votes.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <span class="foot-wordmark">AI Brief</span>
+    <span class="foot-meta">Sunday edition · April 6, 2026</span>
+  </footer>
+
+  <nav class="issue-nav" aria-label="Browse issues" data-date="2026-04-06">
+    <a class="issue-nav-link" id="nav-prev" href="../../../../">← Previous</a>
+    <a class="issue-nav-link issue-nav-index" href="../../../../">All issues</a>
+    <a class="issue-nav-link" id="nav-next" href="../../../../">Next →</a>
+  </nav>
+
+</article>
+<script>
+(function(){
+  var date = document.querySelector('.issue-nav').dataset.date;
+  fetch('../../../../index.json').then(function(r){return r.json();}).then(function(data){
+    var issues = data.issues || [];
+    var i = issues.findIndex(function(x){return x.date===date;});
+    var prev = document.getElementById('nav-prev');
+    var next = document.getElementById('nav-next');
+    if(i < issues.length-1){ prev.href = '../../../../'+issues[i+1].url; prev.textContent = '← '+issues[i+1].date; }
+    else { prev.style.visibility='hidden'; }
+    if(i > 0){ next.href = '../../../../'+issues[i-1].url; next.textContent = issues[i-1].date+' →'; }
+    else { next.style.visibility='hidden'; }
+  }).catch(function(){ document.querySelector('.issue-nav').style.display='none'; });
+})();
+</script>
+</body>
+</html>

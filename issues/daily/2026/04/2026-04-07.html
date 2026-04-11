@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noai, noimageai">
+  <title>AI Brief / Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f5f4f0; min-height: 100vh; display: flex; justify-content: center; padding: 48px 24px; font-family: 'Lora', Georgia, serif; -webkit-font-smoothing: antialiased; }
+    :root { --ink: #1a1917; --ink-muted: #4a4845; --ink-faint: #888580; --ink-ghost: #b8b5b0; --bg: #fffef9; --bg-surface: #f5f4f0; --border: rgba(26,25,23,0.12); --border-mid: rgba(26,25,23,0.22); --border-heavy: rgba(26,25,23,0.55); --accent: #b5451b; --radius-sm: 6px; --radius-md: 8px; }
+    .brief { background: var(--bg); max-width: 1080px; width: 100%; padding: 40px 56px 56px; border: 0.5px solid var(--border-mid); border-radius: 4px; }
+    header[role="banner"] { border-top: 4px solid var(--accent); padding-top: 14px; }
+    .masthead-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .pub-wordmark { display: flex; align-items: baseline; gap: 10px; }
+    .pub-name-ai { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 52px; letter-spacing: 0.05em; line-height: 1; color: var(--accent); }
+    .pub-name-brief { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 52px; letter-spacing: 0.05em; line-height: 1; color: var(--ink-ghost); }
+    .masthead-right { text-align: right; padding-bottom: 4px; }
+    .pub-date { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); display: block; margin-bottom: 3px; }
+    .pub-edition { font-family: 'Lora', serif; font-size: 11px; font-style: italic; color: var(--ink-faint); }
+    .rule-heavy { height: 1px; background: var(--border-heavy); margin-bottom: 1px; }
+    .rule-light { height: 0.5px; background: var(--border); margin-bottom: 22px; }
+    .lead-section { margin-bottom: 20px; }
+    .lead-headline { font-family: 'Lora', serif; font-size: 28px; font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 16px; }
+    .lead-deck { font-size: 16.5px; line-height: 1.7; font-style: italic; font-weight: 400; color: var(--ink-muted); padding-left: 16px; border-left: 3px solid var(--accent); }
+    .content-grid { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 40px; margin-bottom: 28px; align-items: start; }
+    @media (max-width: 600px) { body { padding: 16px; } .brief { padding: 24px 20px 32px; } .content-grid { grid-template-columns: 1fr; } .sidebar { border-left: none; border-top: 0.5px solid var(--border-mid); padding-left: 0; padding-top: 20px; } }
+    h3.col-heading { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+    h3.col-heading::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+    .sidebar { border-left: 0.5px solid var(--border-mid); padding-left: 20px; align-self: start; position: sticky; top: 24px; }
+    .sidebar-section { margin-bottom: 24px; }
+    .sidebar-section:last-child { margin-bottom: 0; }
+    h3.sidebar-head { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); padding-bottom: 8px; border-bottom: 0.5px solid var(--border); margin-bottom: 12px; }
+    .research-list { list-style: none; }
+    .research-item { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 0.5px solid var(--border); }
+    .research-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .research-label a { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--ink); line-height: 1.4; margin-bottom: 4px; display: block; text-decoration: underline; text-decoration-color: var(--border-mid); text-underline-offset: 2px; }
+    .research-desc { font-size: 12.5px; line-height: 1.6; color: var(--ink-muted); font-style: italic; }
+    .stories-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    @media (max-width: 600px) { .stories-grid { grid-template-columns: 1fr; } }
+    .story-card { background: var(--bg); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(26,25,23,0.07), 0 1px 8px rgba(26,25,23,0.04); border: 0.5px solid var(--border); display: flex; flex-direction: column; }
+    .story-card--wide { grid-column: 1 / -1; }
+    .story-card-body { padding: 14px 16px; flex: 1; }
+    h4.story-head { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 7px; }
+    .story-lead { font-family: 'Lora', serif; font-size: 13.5px; font-weight: 600; line-height: 1.5; color: var(--ink); }
+    .story-lead a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--border-mid); text-underline-offset: 3px; }
+    .story-facts { list-style: none; padding: 0; margin: 10px 0 0; border-top: 0.5px solid var(--border); padding-top: 8px; }
+    .story-facts li { font-size: 12px; line-height: 1.55; color: var(--ink-muted); padding: 3px 0 3px 13px; position: relative; }
+    .story-facts li::before { content: '·'; position: absolute; left: 2px; color: var(--accent); font-size: 14px; line-height: 1.2; }
+    .also-section { border-top: 0.5px solid var(--border-mid); padding-top: 20px; margin-bottom: 28px; }
+    h2.also-heading { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    h2.also-heading::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--accent); }
+    .also-list { list-style: none; column-count: 2; column-gap: 32px; }
+    @media (max-width: 600px) { .also-list { column-count: 1; } }
+    .also-item { font-size: 13px; line-height: 1.6; color: var(--ink); padding: 5px 0; border-bottom: 0.5px solid var(--border); break-inside: avoid; }
+    .also-item:last-child { border-bottom: none; }
+    .also-item a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--border-mid); text-underline-offset: 2px; }
+    .trending-section { border-top: 0.5px solid var(--border-mid); padding-top: 20px; margin-bottom: 32px; }
+    h2.trending-heading { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    h2.trending-heading::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--accent); }
+    .trend-items { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 0.5px solid var(--border); }
+    .trend-item { display: flex; align-items: flex-start; gap: 10px; padding: 11px 12px; border-bottom: 0.5px solid var(--border); }
+    .trend-item:nth-child(odd) { border-right: 0.5px solid var(--border); padding-left: 0; }
+    .trend-item:nth-child(even) { padding-right: 0; }
+    .trend-rank { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ink-ghost); min-width: 20px; }
+    .trend-main { min-width: 0; }
+    .trend-name { font-family: 'Lora', serif; font-size: 13.5px; font-weight: 600; color: var(--ink); display: block; margin-bottom: 2px; }
+    .trend-why { font-family: 'Lora', serif; font-size: 12px; font-style: italic; color: var(--ink-muted); display: block; }
+    @media (max-width: 600px) { .trend-items { grid-template-columns: 1fr; } .trend-item { padding: 11px 0; } .trend-item:nth-child(odd) { border-right: none; } }
+    .issue-nav { max-width: 1080px; width: 100%; margin: 16px auto 0; display: flex; justify-content: space-between; align-items: center; padding: 12px 0; }
+    .issue-nav-link { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); text-decoration: none; }
+    .issue-nav-link:hover { color: var(--accent); }
+    .issue-nav-index { color: var(--ink-ghost); }
+    footer[role="contentinfo"] { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid var(--ink); padding-top: 10px; flex-wrap: wrap; gap: 8px; }
+    .foot-wordmark { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-ghost); }
+    .foot-meta { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: var(--ink-ghost); text-transform: uppercase; }
+  </style>
+  <script src="https://res.cdn.office.net/teams-js/2.22.0/js/MicrosoftTeams.min.js"></script>
+  <script>microsoftTeams.app.initialize().then(() => { microsoftTeams.app.notifySuccess(); });</script>
+</head>
+<body>
+<article class="brief" aria-label="AI Brief newsletter">
+
+  <header role="banner">
+    <div class="masthead-inner">
+      <div class="pub-wordmark"><span class="pub-name-ai">AI</span><span class="pub-name-brief">Brief</span></div>
+      <div class="masthead-right">
+        <time class="pub-date" datetime="2026-04-07">April 7, 2026</time>
+        <span class="pub-edition">Monday edition</span>
+      </div>
+    </div>
+    <div class="rule-heavy" role="separator" aria-hidden="true"></div>
+    <div class="rule-light" role="separator" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <section class="lead-section" aria-labelledby="lead-heading">
+      <h2 class="lead-headline" id="lead-heading">Sam Altman proposes a new social contract for ASI as Meta prepares to open-source its next model family</h2>
+      <p class="lead-deck">Sam Altman outlined a new framework for how OpenAI intends to govern the transition to superintelligence, framing it as a social contract rather than a technical milestone. Separately, Meta is preparing open-source releases of its next generation of models, continuing its strategy of matching proprietary labs on capability while keeping weights public. The New Yorker surfaced internal memos behind Sam Altman's 2023 firing, adding new detail to one of tech's most consequential governance crises.</p>
+    </section>
+
+    <div class="content-grid">
+      <section aria-labelledby="matters-heading">
+        <h3 class="col-heading" id="matters-heading">What matters today</h3>
+        <div class="stories-grid">
+
+          <div class="story-card story-card--wide">
+            <div class="story-card-body">
+              <h4 class="story-head">ALTMAN'S ASI SOCIAL CONTRACT</h4>
+              <p class="story-lead">Sam Altman published a new framework for how OpenAI intends to approach artificial superintelligence, framing the company's obligations as a social contract with humanity rather than a set of technical safety constraints.</p>
+              <ul class="story-facts">
+                <li>Marks a shift in how OpenAI publicly narrates AI governance: from safety protocols to a broader societal bargain.</li>
+                <li>Comes as OpenAI transitions from a capped-profit structure toward full commercial operation under investor scrutiny.</li>
+                <li>The framing is deliberate: "social contract" language positions OpenAI as a public interest actor rather than a private frontier lab.</li>
+                <li>Context: Altman's credibility on governance was dented by his 2023 firing and rapid reinstatement. The publication is part of an ongoing reframing effort.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-card-body">
+              <h4 class="story-head">META TO OPEN-SOURCE NEXT MODELS</h4>
+              <p class="story-lead">Meta is preparing open-source releases of versions of its next generation of AI models, extending its strategy of publicly releasing competitive weights while proprietary labs tighten access.</p>
+              <ul class="story-facts">
+                <li>Continues Meta's consistent pattern: release open weights after each generation to pull developer ecosystem toward its infrastructure.</li>
+                <li>Puts pressure on Anthropic and OpenAI, which have both tightened access to powerful models recently.</li>
+                <li>Wang's first Meta models are described as getting ready to ship.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-card-body">
+              <h4 class="story-head">ALTMAN FIRING MEMOS SURFACE</h4>
+              <p class="story-lead">The New Yorker published an investigative report surfacing internal documents and memos behind Sam Altman's November 2023 firing from OpenAI, adding new detail to the board's reasoning.</p>
+              <ul class="story-facts">
+                <li>Documents reveal previously undisclosed specifics about what the board cited in its decision.</li>
+                <li>Altman's reinstatement came within days after key investors and employees threatened to leave.</li>
+                <li>Raises unresolved governance questions about whether the board's original concerns were addressed or simply overruled.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <aside class="sidebar" aria-label="Supporting intelligence">
+        <section class="sidebar-section">
+          <h3 class="sidebar-head">Research worth watching</h3>
+          <ul class="research-list">
+            <li class="research-item">
+              <span class="research-label"><a href="https://huggingface.co/papers/2604.04921">TriAttention: 10x KV Cache Compression</a></span>
+              <p class="research-desc">Matches full attention accuracy with 2.5x throughput or 10.7x KV memory reduction on 32K-token reasoning tasks. Works in pre-RoPE space to stay stable. 96 votes.</p>
+            </li>
+            <li class="research-item">
+              <span class="research-label"><a href="https://huggingface.co/papers/2604.04707">OpenWorldLib: Unified World Model Framework</a></span>
+              <p class="research-desc">Proposes a standardized definition for advanced world models and a unified inference framework integrating models across tasks for efficient collaborative inference. 195 votes.</p>
+            </li>
+            <li class="research-item">
+              <span class="research-label"><a href="https://huggingface.co/papers/2604.04184">Memory Intelligence Agent (MIA)</a></span>
+              <p class="research-desc">Manager-Planner-Executor with bidirectional parametric/non-parametric memory conversion. Planner evolves continuously during test-time without interrupting inference. 47 votes.</p>
+            </li>
+            <li class="research-item">
+              <span class="research-label"><a href="https://huggingface.co/papers/2604.04901">FileGram: File-System Agent Memory</a></span>
+              <p class="research-desc">Grounds agent personalization in file-system behavioral traces rather than dialogue summaries. Encodes atomic actions into procedural, semantic, and episodic channels. 37 votes.</p>
+            </li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <section class="also-section">
+      <h2 class="also-heading">Also in AI today</h2>
+      <ul class="also-list">
+        <li class="also-item"><strong>Collaborative multi-agent systems</strong> are becoming a design pattern in production: agents handing off tasks to each other and sharing context rather than operating independently, per Axios AI+ coverage.</li>
+        <li class="also-item"><strong>Cursor expanded significantly</strong> in product scope and user base, per Product Hunt's Frontier newsletter. Five additional AI tools that "flew under the radar" were also featured.</li>
+        <li class="also-item"><a href="https://huggingface.co/papers/2604.02176"><strong>Adam's Law</strong></a> proposes Textual Frequency Law: frequent textual data should be preferred for both LLM prompting and fine-tuning. Curriculum training in order of increasing frequency improves results. 164 votes.</li>
+        <li class="also-item"><a href="https://huggingface.co/papers/2604.04771"><strong>MinerU2.5-Pro</strong></a> improved document parsing SOTA solely through data engineering on a fixed 1.2B architecture, outperforming models 200x larger. 110 votes.</li>
+      </ul>
+    </section>
+
+    <section class="trending-section" aria-labelledby="trending-heading">
+      <h2 class="trending-heading" id="trending-heading">Product Hunt: Top Launches</h2>
+      <ol class="trend-items">
+        <li class="trend-item">
+          <span class="trend-rank">1</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/b80faac0-f678-4432-b65f-7b9321d45065.png?auto=format" alt="NovaVoice">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/novavoice">NovaVoice</a><span class="trend-why">Smart dictation, AI assistant, + app control via voice</span></span>
+          <span class="trend-votes">▲ 561</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">2</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/fe3cdb85-612e-4454-85ab-437dc911b0e9.png?auto=format" alt="Lessie AI">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/lessie-ai-2">Lessie AI</a><span class="trend-why">Search, reach, and connect — find the perfect fit, 10x faster</span></span>
+          <span class="trend-votes">▲ 452</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">3</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/fe23bc25-a795-4041-9c5e-090f5c51df10.png?auto=format" alt="SuperShrimp">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/supershrimp">SuperShrimp</a><span class="trend-why">Fix your terrible posture</span></span>
+          <span class="trend-votes">▲ 330</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">4</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/83ab3eb9-3a9d-4fe1-bb9a-da80c514c2ce.png?auto=format" alt="OpenOwl">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/openowl">OpenOwl</a><span class="trend-why">Automate what APIs can't in one prompt — done locally</span></span>
+          <span class="trend-votes">▲ 259</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">5</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/30c67442-1a5c-429e-b8d3-28abbb363d4c.png?auto=format" alt="Caret">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/caret-5">Caret</a><span class="trend-why">Press Tab for AI anywhere you type on Mac</span></span>
+          <span class="trend-votes">▲ 216</span>
+        </li>
+        <li class="trend-item">
+          <span class="trend-rank">6</span>
+          <img class="trend-thumb" src="https://ph-files.imgix.net/e7cb0fc3-9ddc-4484-9496-4a8eb0033245.jpeg?auto=format" alt="Google AI Edge Eloquent">
+          <span class="trend-main"><a class="trend-name" href="https://www.producthunt.com/products/google">Google AI Edge Eloquent</a><span class="trend-why">Google's offline-first AI dictation, powered by Gemma</span></span>
+          <span class="trend-votes">▲ 184</span>
+        </li>
+      </ol>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <span class="foot-wordmark">AI Brief</span>
+    <span class="foot-meta">Monday edition · April 7, 2026</span>
+  </footer>
+
+  <nav class="issue-nav" aria-label="Browse issues" data-date="2026-04-07">
+    <a class="issue-nav-link" id="nav-prev" href="../../../../">← Previous</a>
+    <a class="issue-nav-link issue-nav-index" href="../../../../">All issues</a>
+    <a class="issue-nav-link" id="nav-next" href="../../../../">Next →</a>
+  </nav>
+
+</article>
+<script>
+(function(){
+  var date = document.querySelector('.issue-nav').dataset.date;
+  fetch('../../../../index.json').then(function(r){return r.json();}).then(function(data){
+    var issues = data.issues || [];
+    var i = issues.findIndex(function(x){return x.date===date;});
+    var prev = document.getElementById('nav-prev');
+    var next = document.getElementById('nav-next');
+    if(i < issues.length-1){ prev.href = '../../../../'+issues[i+1].url; prev.textContent = '← '+issues[i+1].date; }
+    else { prev.style.visibility='hidden'; }
+    if(i > 0){ next.href = '../../../../'+issues[i-1].url; next.textContent = issues[i-1].date+' →'; }
+    else { next.style.visibility='hidden'; }
+  }).catch(function(){ document.querySelector('.issue-nav').style.display='none'; });
+})();
+</script>
+</body>
+</html>
