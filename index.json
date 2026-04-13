@@ -1,6 +1,13 @@
 {
   "issues": [
     {
+      "type": "daily",
+      "date": "2026-04-13",
+      "url": "issues/daily/2026/04/2026-04-13.html",
+      "headline": "Lazarus Group compromised OpenAI's macOS signing pipeline via Axios npm attack",
+      "tags": ["OpenAI", "Google", "Amazon"]
+    },
+    {
       "type": "weekly",
       "date": "2026-04-11",
       "url": "issues/weekly/2026/04/2026-04-11.html",
