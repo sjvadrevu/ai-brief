@@ -2,6 +2,13 @@
   "issues": [
     {
       "type": "daily",
+      "date": "2026-04-14",
+      "url": "issues/daily/2026/04/2026-04-14.html",
+      "headline": "Figma opens its canvas to agents as AWS ships AgentCore and LG releases a 33B open VLM",
+      "tags": ["Google", "Amazon"]
+    },
+    {
+      "type": "daily",
       "date": "2026-04-13",
       "url": "issues/daily/2026/04/2026-04-13.html",
       "headline": "Lazarus Group compromised OpenAI's macOS signing pipeline via Axios npm attack",
