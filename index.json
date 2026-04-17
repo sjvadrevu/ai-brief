@@ -2,6 +2,13 @@
   "issues": [
     {
       "type": "daily",
+      "date": "2026-04-17",
+      "url": "issues/daily/2026/04/2026-04-17.html",
+      "headline": "Anthropic, OpenAI, Google, and Canva all release agentic AI tools in a 24-hour window",
+      "tags": ["Anthropic", "OpenAI", "Google", "Microsoft", "Amazon"]
+    },
+    {
+      "type": "daily",
       "date": "2026-04-16",
       "url": "issues/daily/2026/04/2026-04-16.html",
       "headline": "PrismML ships 1-bit LLMs that run in any browser",
