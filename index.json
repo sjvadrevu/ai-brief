@@ -2,6 +2,13 @@
   "issues": [
     {
       "type": "daily",
+      "date": "2026-04-24",
+      "url": "issues/daily/2026/04/2026-04-24.html",
+      "headline": "DeepSeek V4 ships 1M-token context as OpenAI releases GPT-5.5 and Codex goes autonomous",
+      "tags": ["OpenAI", "Anthropic", "Google", "Microsoft", "Amazon"]
+    },
+    {
+      "type": "daily",
       "date": "2026-04-17",
       "url": "issues/daily/2026/04/2026-04-17.html",
       "headline": "Anthropic, OpenAI, Google, and Canva all release agentic AI tools in a 24-hour window",
