@@ -2,6 +2,13 @@
   "issues": [
     {
       "type": "daily",
+      "date": "2026-05-05",
+      "url": "issues/daily/2026/05/2026-05-05.html",
+      "headline": "OpenAI ships o4-mini-high as Google launches Gemini 3.2 Ultra and Nvidia unveils Blackwell Ultra cluster specs",
+      "tags": ["OpenAI", "Google", "Nvidia", "Meta", "Microsoft", "Amazon", "Anthropic", "Mistral", "Apple", "ServiceNow"]
+    },
+    {
+      "type": "daily",
       "date": "2026-04-24",
       "url": "issues/daily/2026/04/2026-04-24.html",
       "headline": "DeepSeek V4 ships 1M-token context as OpenAI releases GPT-5.5 and Codex goes autonomous",
