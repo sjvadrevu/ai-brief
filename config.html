@@ -5,18 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noai, noimageai">
   <title>AI Brief — Configure</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://res.cdn.office.net/teams-js/2.22.0/js/MicrosoftTeams.min.js"></script>
   <style>
-    body { font-family: -apple-system, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #f5f4f0; }
-    .card { background: #fff; padding: 32px 40px; border-radius: 8px; text-align: center; max-width: 360px; }
-    h2 { font-size: 20px; margin: 0 0 8px; color: #1a1917; }
-    p { font-size: 13px; color: #666; margin: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Lora', serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #f5f4f0; }
+    .card {
+      background: #fffef9;
+      border: 0.5px solid rgba(26,25,23,0.22);
+      border-top: 4px solid #b5451b;
+      border-radius: 4px;
+      padding: 40px 48px;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    .wordmark { display: flex; align-items: baseline; gap: 8px; justify-content: center; margin-bottom: 20px; }
+    .wm-ai { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: #b5451b; line-height: 1; }
+    .wm-brief { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: #b8b5b0; line-height: 1; }
+    .description { font-size: 14px; color: #4a4845; line-height: 1.6; margin-bottom: 16px; }
+    .hint { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #aaa8a4; text-transform: uppercase; }
   </style>
 </head>
 <body>
 <div class="card">
-  <h2>AI Brief</h2>
-  <p>Daily AI intelligence briefing. Click Save to add this tab.</p>
+  <div class="wordmark">
+    <span class="wm-ai">AI</span>
+    <span class="wm-brief">Brief</span>
+  </div>
+  <p class="description">Daily AI intelligence briefing — curated coverage of the most important developments in artificial intelligence.</p>
+  <p class="hint">Click Save to add this tab to your channel.</p>
 </div>
 <script>
   microsoftTeams.app.initialize().then(() => {
